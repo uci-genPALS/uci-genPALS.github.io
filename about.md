@@ -1,14 +1,29 @@
 ---
-layout: about
-title: about
+layout: default
+title: about genPALS
 subtitle:
+banner: /assets/images/banners/aldrich.jpg
 comments: false
 ---
 
 # Mission Statement
 
-Just dudes being bros?
+Recently there has been an explosion of genomics data and new bioinformatic methods,
+largely due to biotechnological advances that have enabled the field as a whole to
+shift from studying whole tissue samples (bulk) to individual cells or nuclei. The
+best practices for analyzing this data are not well established, especially
+when new tools and protocols are constantly being published, ultimately making it
+challenging for any one individual to keep up with the breakneck pace of this field. We started
+genPALS (**gen**omics **P**ractical **A**pplications and **L**earning **S**eminar) with the goal of cultivating a supportive community of researchers
+at UC Irvine who use genomics as a tool to study their favorite biological
+systems. Specifically, this group is for the technicians, graduate students,
+and post-docs that actually analyze this data to discuss new methods and share
+personal experiences with using genomics tools in their research. We want to know
+what works as well as what fails, in hopes of supporting each other in our unified
+pursuit of using data to drive discovery.
+
 
 # Contact
 
-uci.genpals@gmail.com
+Please send questions and inquiries about presenting to
+**uci.genpals@gmail.com**

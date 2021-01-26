@@ -3,7 +3,7 @@ layout: post
 title: Scanorama
 subheading: using Scanorama to integrate and batch correct scRNA-seq data
 author: Axel Almet
-categories: integration
+categories: integration 
 banner: /assets/images/scanorama/scanorama_abstract.jpg
 tags: single-cell batch-correction integration python scanpy
 sidebar: []
@@ -12,8 +12,6 @@ usemathjax: true
 
 
 ## introduction, installation, and data download
-
-$$E = mc^2$$
 
 Here, we will integrate four datasets of human pancreas cells from different studies. This collection has been used to benchmark a number of integration methods now and is used in the following [Scanpy tutorial](https://scanpy-tutorials.readthedocs.io/en/latest/integrating-data-using-ingest.html).
 
