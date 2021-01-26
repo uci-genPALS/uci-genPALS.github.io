@@ -2,7 +2,7 @@
 layout: default
 title: resources
 subtitle:
-banner: /assets/images/banners/home.jpeg
+banner: /assets/images/banners/brain.jpg
 comments: false
 sidebar: []
 ---
