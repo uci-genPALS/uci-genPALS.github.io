@@ -1,6 +1,6 @@
 ---
 layout: default
-title: about genPALS
+title: about
 subtitle:
 banner: /assets/images/banners/aldrich.jpg
 comments: false
