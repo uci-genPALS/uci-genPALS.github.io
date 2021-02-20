@@ -6,6 +6,10 @@ banner: /assets/images/banners/aldrich.jpg
 comments: false
 ---
 
+<p align="center">
+  <img src="/assets/images/other/fly.png" />
+</p>
+
 # Mission Statement
 
 Recently there has been an explosion of genomics data and new bioinformatic methods,
@@ -21,6 +25,11 @@ and post-docs that actually analyze this data to discuss new methods and share
 personal experiences with using genomics tools in their research. We want to know
 what works as well as what fails, in hopes of supporting each other in our unified
 pursuit of using data to drive discovery.
+
+genPALS is supported by the [NSF-Simons Center for Multiscale Cell Fate Research (CMCF)](https://cellfate.uci.edu/).
+
+![](/assets/images/other/CMCFNSFSimons_logo.jpg)
+
 
 
 # Contact
