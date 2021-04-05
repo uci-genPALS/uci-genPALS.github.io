@@ -3,13 +3,14 @@ layout: post
 title: Scanorama
 subheading: using Scanorama to integrate and batch correct scRNA-seq data
 author: Axel Almet
-categories: integration 
+categories: integration
 banner: /assets/images/scanorama/scanorama_abstract.jpg
 tags: single-cell batch-correction integration python scanpy
 sidebar: []
 usemathjax: true
 ---
 
+Author: Axel Almet
 
 ## introduction, installation, and data download
 
