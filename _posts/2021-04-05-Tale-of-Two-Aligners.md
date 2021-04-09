@@ -5,7 +5,7 @@ subheading: Cellranger vs Kallisto for single-cell transcriptomics pre-processin
 author: Emmanuel Dollinger
 categories: preprocessing
 banner: /assets/images/banners/twoaligners.png
-tags: single-cell preprocessing python scanpy
+tags: single-cell preprocessing python scanpy hpc integration
 sidebar: []
 usemathjax: true
 ---
