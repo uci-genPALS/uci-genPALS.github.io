@@ -34,5 +34,9 @@ genPALS is supported by the [NSF-Simons Center for Multiscale Cell Fate Research
 
 # Contact
 
-Please send questions and inquiries about presenting to
-**uci.genpals@gmail.com**
+Please join the GenPALS [Slack workspace](https://genpals.slack.com/) to interact with our community.
+For other questions and inquiries, please reach out to the GenPALS leaders.
+
+* **Emmanuel Dollinge** (edolling {at} uci.edu)
+* **Fairlie Reese** (freese {at} uci.edu)
+* **Sam Morabito** (smorabit {at} uci.edu)
