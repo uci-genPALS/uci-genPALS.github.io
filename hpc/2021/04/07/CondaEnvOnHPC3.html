@@ -4,18 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c"></meta><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Home | UCI genPALS</title>
+<title>Python on HPC3 | UCI genPALS</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Home" />
-<meta name="author" content="UCI genPALS" />
+<meta property="og:title" content="Python on HPC3" />
+<meta name="author" content="Emmanuel Dollinger" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="UC Irvine Genomics Practical Applications Learning Seminar" />
-<meta property="og:description" content="UC Irvine Genomics Practical Applications Learning Seminar" />
-<link rel="canonical" href="/" />
-<meta property="og:url" content="/" />
+<meta name="description" content="Author: Emmanuel Dollinger" />
+<meta property="og:description" content="Author: Emmanuel Dollinger" />
+<link rel="canonical" href="/hpc/2021/04/07/CondaEnvOnHPC3.html" />
+<meta property="og:url" content="/hpc/2021/04/07/CondaEnvOnHPC3.html" />
 <meta property="og:site_name" content="UCI genPALS" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-07T00:00:00-07:00" />
 <script type="application/ld+json">
-{"headline":"Home","url":"/","author":{"@type":"Person","name":"UCI genPALS"},"description":"UC Irvine Genomics Practical Applications Learning Seminar","name":"UCI genPALS","@type":"WebSite","@context":"https://schema.org"}</script>
+{"headline":"Python on HPC3","url":"/hpc/2021/04/07/CondaEnvOnHPC3.html","dateModified":"2021-04-07T00:00:00-07:00","datePublished":"2021-04-07T00:00:00-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/hpc/2021/04/07/CondaEnvOnHPC3.html"},"author":{"@type":"Person","name":"Emmanuel Dollinger"},"description":"Author: Emmanuel Dollinger","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -282,17 +284,42 @@ function googleTranslateElementInit() {
 
   <section class="page-banner">
     <div class="page-banner-img">
-      <div style="background-image: url(/assets/images/banners/brain.jpg)"></div>
+      <div style="background-image: url(/assets/images/other/anaconda.jpeg)"></div>
     </div>
     <div class="wrapper">
-      <div class="page-banner-inner"><div class="page-banner-default">
-            <h1 class="page-banner-heading">
-              UCI genPALS
-            </h1>
-            <h2 class="page-banner-subheading">
-              genomics practical applications and learning seminar
-            </h2>
-          </div></div>
+      <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Python on HPC3</h1>
+  <h3 class="post-subtitle">How to use python/R/other programming language on the HPC3</h3>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2021-04-07T00:00:00-07:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Apr 07, 2021
+    </time>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#hpc">#hpc</a><a class="post-tag" href="/tags.html#python">#python</a></div></header>
+</div>
     </div>
   </section><script>
   function hashLocate(hashValue) {
@@ -449,422 +476,181 @@ function googleTranslateElementInit() {
         <div class="framework">
   <section class="main">
 
-     <div class="articles">
-  
+     <div class="post">
+  <section>
 
-  
 
 
-  <div class="pagination">
-  <!-- Post list links -->
-  <ul class="post-list"><li>
 
 
 
 
 
 
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
+    <div class="post-content e-content" itemprop="articleBody">
 
+      <p>Author: Emmanuel Dollinger</p>
 
+<h2 id="how-to-run-python-on-the-hpc3">How to run python on the HPC3</h2>
 
+<p>Sam Morabito recently showed me a trick to get python working on the HPC3. This makes running python on the HPC3 actually useable. This trick relies on using conda environments, you can read up on conda <a href="https://conda.io/projects/conda/en/latest/user-guide/index.html">here</a> and on conda virtual environments <a href="https://conda.io/projects/conda/en/latest/user-guide/concepts/environments.html">here</a>.</p>
 
+<h2 id="scope">Scope:</h2>
 
+<p>This will only work if you are running your code in a programming language such as python or R. If you are running a package directly from bash such as cellranger this isn’t what you want to do.</p>
 
+<p>I won’t go over basic HPC3/bash code here, see <a href="https://rcic.uci.edu/hpc3/slurm.html">this link</a> for HPC3 stuff.</p>
 
+<p>We will install Scanpy, which is a nice single cell sequencing package for python. This is a nice usecase because Scanpy is both very common and not in conda.</p>
 
+<h2 id="create-new-conda-environment">Create new conda environment</h2>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ssh <span class="nt">-y</span> edolling@hpc3.rcic.uci.edu
 
+module load anaconda
 
+conda init <span class="c">#do whatever it tells you to do, probably will have to quit and login in again to the HPC3.</span>
 
+conda create <span class="nt">-n</span> EnvName <span class="nv">python</span><span class="o">=</span>3.6 <span class="c"># create a new environment with specified python version</span>
 
+</code></pre></div></div>
 
+<p>It will ask you to install packages, continue through.</p>
 
-      <h2 class="post-title"><a class="post-link" href="/network/2022/02/24/scWGCNA.html">
-          scWGCNA
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Feb 24, 2022</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
-      </div>
-      <p class="post-excerpt">
-        TODO: Link to the scWGCNA package
+<p>Now we have a virtual conda environment, that we can install packages in directly. This totally circumvents the onerous requirement to have modulefiles and such for each package. Best practices are to create a virtual environment for each project.</p>
 
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#R">#R</a><a class="post-tag" href="/tags.html#networks">#networks</a></div>
-    </li><li>
+<h2 id="install-packages-that-are-in-conda">Install packages that are in conda</h2>
 
+<p>Every time you want to use a virtual environment, you need to activate it (again see the env tutorial above).</p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+conda activate EnvName
 
+</code></pre></div></div>
 
+<p>The environment name should change from (base) to (EnvName).</p>
 
+<p>Best practice for packages that are not in conda is to first install everything that is in conda and then download via pip. The reason for this is conda can update its packages but not other packages, and doesn’t “see” pip updating packages. See <a href="https://www.anaconda.com/blog/using-pip-in-a-conda-environment">this post</a> for more.</p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+conda <span class="nb">install </span>pandas
 
+<span class="c"># Install a bunch of packages</span>
 
+conda <span class="nb">install </span>matplotlib
 
+<span class="c"># Install moar packages</span>
 
+conda <span class="nb">install </span>seaborn
 
+<span class="c"># INSTALL ALL THE PACKAGES</span>
 
+<span class="c"># etc</span>
 
+</code></pre></div></div>
 
+<p>If you already have a conda env that has all the packages you want, you can do:</p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+conda activate OldEnv
 
+conda list <span class="nt">-e</span> <span class="o">&gt;</span> packagelist.txt
 
+conda create <span class="nt">-n</span> NewEnv <span class="nt">--file</span> packagelist.txt
 
+</code></pre></div></div>
 
+<p>You can also create the conda env and pass the file to <code class="language-plaintext highlighter-rouge">conda install</code> afterwards. NB this will error if you have pip installed packages in the old conda env.</p>
 
+<h2 id="install-packages-not-in-conda">Install packages not in conda</h2>
 
+<p>Once you’ve installed most/all of the packages in conda, you can simply pip install scanpy.</p>
 
-      <h2 class="post-title"><a class="post-link" href="/network/2022/02/10/gene-distributions.html">
-          Gene Distributions
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Feb 10, 2022</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
-      </div>
-      <p class="post-excerpt">
-        TODO: Copy emmanuel’s notebook here
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+conda activate EnvName <span class="c"># Don't forget to do this</span>
 
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#R">#R</a><a class="post-tag" href="/tags.html#networks">#networks</a></div>
-    </li><li>
+pip <span class="nb">install </span>scanpy
 
+</code></pre></div></div>
 
+<h2 id="load-scanpy-in-python-file">Load scanpy in python file</h2>
 
+<p>Now we will submit a job to the scheduler that just loads scanpy and quits. You need two scripts, a slurm script that submits the python script and the python script.</p>
 
+<p>slurm.sub script:</p>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 
+<span class="c">#SBATCH --job-name=scanpytest      ## Name of the job.</span>
+<span class="c">#SBATCH -A qnie_lab     ## account to charge</span>
+<span class="c">#SBATCH -p standard          ## partition/queue name</span>
+<span class="c">#SBATCH --nodes=1            ## (-N) number of nodes to use</span>
+<span class="c">#SBATCH --ntasks=1           ## (-n) number of tasks to launch</span>
+<span class="c">#SBATCH --cpus-per-task=2    ## number of cores the job needs</span>
+<span class="c">#SBATCH --error=slurm-%J.err ## error log file</span>
+<span class="c">#SBATCH --output=../out ## out log file</span>
 
+<span class="c"># Run the following two lines every time you submit a python script to slurm, this tells slurm about your conda env and loads it.</span>
+<span class="nb">source</span> ~/.bashrc
 
+conda activate trVAE
 
+<span class="c"># This next line just runs the python script</span>
 
+python3 testscipt.py
 
+</code></pre></div></div>
 
+<p>testscipt.py script:</p>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="n">sc</span>
 
+<span class="k">print</span><span class="p">(</span><span class="s">"Scanpy successfully loaded."</span><span class="p">)</span>
 
+</code></pre></div></div>
 
+<p>In ../out:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Scanpy successfully loaded.
 
+</code></pre></div></div>
 
+<p>That’s it! NB this will also work with R and any other language that conda supports.</p>
 
 
+    </div>
 
+</article>
+<div class="post-nav"><a class="previous" href="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html" title="A Tale of Two Aligners">A Tale of Two Aligners</a><a class="next" href="/long-read/2021/04/19/long-reads.html" title="Analysis of long-read transcriptomes">Analysis of long-read transcriptomes</a></div><div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/integration/2020/12/03/scanorama_demo_pancreas.html" title="Analysis of long-read transcriptomes">Scanorama</a></li><li><a class="post-link" href="/long-read/2021/04/19/long-reads.html" title="Analysis of long-read transcriptomes">Analysis of long-read transcriptomes</a></li><li><a class="post-link" href="/network/2022/02/24/scWGCNA.html" title="Analysis of long-read transcriptomes">scWGCNA</a></li><li><a class="post-link" href="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html" title="Analysis of long-read transcriptomes">A Tale of Two Aligners</a></li></ul>
+    </div><div class="post-comments">  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '/hpc/2021/04/07/CondaEnvOnHPC3.html';
+      this.page.identifier = '/hpc/2021/04/07/CondaEnvOnHPC3.html';
+    };
 
-      <h2 class="post-title"><a class="post-link" href="/splicing/2022/01/27/swan.html">
-          Swan
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Jan 27, 2022</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
-      </div>
-      <p class="post-excerpt">
-        TODO: Copy Fairlie’s notebook here
+    (function() {
+      var d = document, s = d.createElement('script');
 
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#python">#python</a></div>
-    </li><li>
+      s.src = 'https://https-uci-genpals-github-io.disqus.com/embed.js';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <h2 class="post-title"><a class="post-link" href="/long-read/2021/04/19/long-reads.html">
-          Analysis of long-read transcriptomes
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Apr 19, 2021</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 hour 11 mins</span>
-      </div>
-      <p class="post-excerpt">
-        Author: Fairlie Reese Data download and formatting Long-read data Note: Astrocyte data currently not publically available. This page will be updated when it is! These files already contain full-length non-chimeric reads. They have been processed as per the pipeline outlined here # download files wget http://crick.bio.uci.edu/freese/210413_pgp1_hub/encode_files_dl.txt . xargs -L 1...
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#long-read">#long-read</a><a class="post-tag" href="/tags.html#python">#python</a><a class="post-tag" href="/tags.html#RNA">#RNA</a><a class="post-tag" href="/tags.html#genome-browser">#genome-browser</a><a class="post-tag" href="/tags.html#splicing">#splicing</a></div>
-    </li><li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <h2 class="post-title"><a class="post-link" href="/hpc/2021/04/07/CondaEnvOnHPC3.html">
-          Python on HPC3
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Apr 07, 2021</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
-      </div>
-      <p class="post-excerpt">
-        Author: Emmanuel Dollinger How to run python on the HPC3 Sam Morabito recently showed me a trick to get python working on the HPC3. This makes running python on the HPC3 actually useable. This trick relies on using conda environments, you can read up on conda here and on conda...
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#hpc">#hpc</a><a class="post-tag" href="/tags.html#python">#python</a></div>
-    </li><li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <h2 class="post-title"><a class="post-link" href="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html">
-          A Tale of Two Aligners
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Apr 05, 2021</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 49 mins</span>
-      </div>
-      <p class="post-excerpt">
-        Author: Emmanuel Dollinger Introduction Goal of this notebook is to align mouse single cell transcriptomic reads using cellranger and kallisto to compare the outputs. All cellranger code was ran on the HPC3, all kallisto code was run on a desktop with 10 cores (which right there is a clue as...
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#preprocessing">#preprocessing</a><a class="post-tag" href="/tags.html#python">#python</a><a class="post-tag" href="/tags.html#scanpy">#scanpy</a><a class="post-tag" href="/tags.html#hpc">#hpc</a><a class="post-tag" href="/tags.html#integration">#integration</a></div>
-    </li><li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <h2 class="post-title"><a class="post-link" href="/signaling/2021/02/23/cellchat.html">
-          CellChat
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Feb 23, 2021</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
-      </div>
-      <p class="post-excerpt">
-        GenPALS Seminar Presenter: Suoqin Jin Author of this page: Samuel Morabito Inference and analysis of cell-cell communication using CellChat Dr. Suoqin Jin gave a fantastic talk discussing CellChat, a tool for analyzing cell-cell commmunication using single-cell transcriptomics data. CellChat is a powerful analysis toolkit in R that allows for the...
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#R">#R</a><a class="post-tag" href="/tags.html#cell-signaling">#cell-signaling</a><a class="post-tag" href="/tags.html#modeling">#modeling</a><a class="post-tag" href="/tags.html#networks">#networks</a></div>
-    </li><li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <h2 class="post-title"><a class="post-link" href="/pseudotime/2021/02/09/scvelo-tutorial.html">
-          scVelo
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Feb 09, 2021</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 26 mins</span>
-      </div>
-      <p class="post-excerpt">
-        Author: Sam Morabito Introduction In this tutorial, I will cover how to use the Python package scVelo to perform RNA velocity analysis in single-cell RNA-seq data (scRNA-seq). scVelo was published in 2020 in Nature Biotechnology, making several improvements from the original RNA velocity study and its accomanpying software velocyto. Briefly,...
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#pseudotime">#pseudotime</a><a class="post-tag" href="/tags.html#velocity">#velocity</a><a class="post-tag" href="/tags.html#python">#python</a><a class="post-tag" href="/tags.html#scanpy">#scanpy</a></div>
-    </li><li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <h2 class="post-title"><a class="post-link" href="/integration/2020/12/03/scanorama_demo_pancreas.html">
-          Scanorama
-        </a>
-      </h2>
-      <div class="post-meta">
-        <span class="post-date"><i class="fa fa-calendar"></i> Dec 03, 2020</span>
-        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 11 mins</span>
-      </div>
-      <p class="post-excerpt">
-        Author: Axel Almet introduction, installation, and data download Here, we will integrate four datasets of human pancreas cells from different studies. This collection has been used to benchmark a number of integration methods now and is used in the following Scanpy tutorial. It’s also worth mentioning that a lot of...
-      </p>
-      <div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#batch-correction">#batch-correction</a><a class="post-tag" href="/tags.html#integration">#integration</a><a class="post-tag" href="/tags.html#python">#python</a><a class="post-tag" href="/tags.html#scanpy">#scanpy</a></div>
-    </li></ul>
-
-  <!-- Pagination links --></div>
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div></section>
 </div>
 
 
   </section>
   <section class="sidebar" style="margin-left: 15px;">
-    <!-- Get sidebar items -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="common-list">
-  <ul>
-    <li>
-      <a href="/index.html">
-        All<span>9</span>
-      </a>
-    </li>
-
-    
-      <li>
-        <a href="/categories.html#h-hpc">
-          hpc <span>1</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-integration">
-          integration <span>1</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-long-read">
-          long-read <span>1</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-network">
-          network <span>2</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-preprocessing">
-          preprocessing <span>1</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-pseudotime">
-          pseudotime <span>1</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-signaling">
-          signaling <span>1</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="/categories.html#h-splicing">
-          splicing <span>1</span>
-        </a>
-      </li>
-    
-  </ul>
-</div>
-
-</section>
+    <!-- Get sidebar items --></section>
 </div>
 
       </div>

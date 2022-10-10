@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c"></meta><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>scVelo | UCI genPALS</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="scVelo" />
+<meta name="author" content="Samuel Morabito" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Author: Sam Morabito" />
+<meta property="og:description" content="Author: Sam Morabito" />
+<link rel="canonical" href="/pseudotime/2021/02/09/scvelo-tutorial.html" />
+<meta property="og:url" content="/pseudotime/2021/02/09/scvelo-tutorial.html" />
+<meta property="og:site_name" content="UCI genPALS" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-09T00:00:00-08:00" />
+<script type="application/ld+json">
+{"headline":"scVelo","url":"/pseudotime/2021/02/09/scvelo-tutorial.html","dateModified":"2021-02-09T00:00:00-08:00","datePublished":"2021-02-09T00:00:00-08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/pseudotime/2021/02/09/scvelo-tutorial.html"},"author":{"@type":"Person","name":"Samuel Morabito"},"description":"Author: Sam Morabito","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+  <!-- and it's easy to individually load additional languages -->
+  <script charset="UTF-8"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="UCI genPALS" /></head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="UCI genPALS" src="" onerror="this.style.display='none'">
+  UCI genPALS
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger"><a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/categories.html">CATEGORIES</a><a class="page-link" href="/events.html">EVENTS</a><a class="page-link" href="/">HOME</a><a class="page-link" href="/resources.html">RESOURCES</a><a class="page-link" href="/symposium.html">GENPALS SYMPOSIUM 2021</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+<span class="page-link">
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://www.countryflags.io/us/flat/64.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://www.countryflags.io/fr/flat/64.png" title="Franch">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://www.countryflags.io/cn/flat/64.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://www.countryflags.io/jp/flat/64.png" title="Japan">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://www.countryflags.io/kr/flat/64.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://www.countryflags.io/ru/flat/64.png" title="Russia">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: '',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span></div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="page-banner">
+    <div class="page-banner-img">
+      <div style="background-image: url(/assets/images/scVelo/scvelo_banner.png)"></div>
+    </div>
+    <div class="wrapper">
+      <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">scVelo</h1>
+  <h3 class="post-subtitle">using scVelo to analyze transcriptional dynamics in scRNA-seq data</h3>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2021-02-09T00:00:00-08:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Feb 09, 2021
+    </time>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 26 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#pseudotime">#pseudotime</a><a class="post-tag" href="/tags.html#velocity">#velocity</a><a class="post-tag" href="/tags.html#python">#python</a><a class="post-tag" href="/tags.html#scanpy">#scanpy</a></div></header>
+</div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('on' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>Author: Sam Morabito</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this tutorial, I will cover how to use the Python package <a href="https://scvelo.readthedocs.io/index.html">scVelo</a> to perform RNA velocity analysis in single-cell RNA-seq data (scRNA-seq). scVelo was published in 2020 in <a href="https://www.nature.com/articles/s41587-020-0591-3">Nature Biotechnology</a>, making several improvements from the original <a href="https://www.nature.com/articles/s41586-018-0414-6">RNA velocity study</a> and its accomanpying software <a href="http://velocyto.org/">velocyto</a>.</p>
+
+<p>Briefly, RNA velocity analysis allows us to infer transcriptional dynamics that are not directly observed in a scRNA-seq experiment using a mathematical model of transcriptional kinetics. We can use RNA velocity to determine if a gene of interest is being induced or repressed in a give cell population of interest. Moreover, we can extrapolate this information to predict cell fate decision via pseudotime trajectories.</p>
+
+<p>The majority of this tutorial is taken from the <a href="https://scvelo.readthedocs.io/index.html">scVelo</a> documentation.</p>
+
+<h2 id="step--1-convert-data-from-seurat-to-python--anndata">Step -1: Convert data from Seurat to Python / anndata</h2>
+
+<p>For this tutorial, I am starting with a mouse brain dataset that contains cells from disease and control samples. I have already performed the primary data processing (filtering, normalization, clustering, batch alignment, dimensionality reduction) using Seurat in R. First I will go over the code that I used to convert my Seurat object into a format that is usable in scVelo (anndata format). It is possible to use the <a href="https://mojaveazure.github.io/seurat-disk/reference/SeuratDisk-package.html">SeuratDisk</a> R package to convert between Seurat and anndata formats, but this software is in early development stages and I have had mixed results when using it.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># assuming that you have some Seurat object called seurat_obj:</span><span class="w">
+
+</span><span class="c1"># save metadata table:</span><span class="w">
+</span><span class="n">seurat_obj</span><span class="o">$</span><span class="n">barcode</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">)</span><span class="w">
+</span><span class="n">seurat_obj</span><span class="o">$</span><span class="n">UMAP_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seurat_obj</span><span class="o">@</span><span class="n">reductions</span><span class="o">$</span><span class="n">umap</span><span class="o">@</span><span class="n">cell.embeddings</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="w">
+</span><span class="n">seurat_obj</span><span class="o">$</span><span class="n">UMAP_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seurat_obj</span><span class="o">@</span><span class="n">reductions</span><span class="o">$</span><span class="n">umap</span><span class="o">@</span><span class="n">cell.embeddings</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="w">
+</span><span class="n">write.csv</span><span class="p">(</span><span class="n">seurat_obj</span><span class="o">@</span><span class="n">meta.data</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="o">=</span><span class="s1">'metadata.csv'</span><span class="p">,</span><span class="w"> </span><span class="n">quote</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="nb">F</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># write expression counts matrix</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span><span class="w">
+</span><span class="n">counts_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GetAssayData</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="o">=</span><span class="s1">'RNA'</span><span class="p">,</span><span class="w"> </span><span class="n">slot</span><span class="o">=</span><span class="s1">'counts'</span><span class="p">)</span><span class="w">
+</span><span class="n">writeMM</span><span class="p">(</span><span class="n">counts_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="o">=</span><span class="n">paste0</span><span class="p">(</span><span class="n">out_data_dir</span><span class="p">,</span><span class="w"> </span><span class="s1">'counts.mtx'</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># write dimesnionality reduction matrix, in this example case pca matrix</span><span class="w">
+</span><span class="n">write.csv</span><span class="p">(</span><span class="n">seurat_obj</span><span class="o">@</span><span class="n">reductions</span><span class="o">$</span><span class="n">pca</span><span class="o">@</span><span class="n">cell.embeddings</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="o">=</span><span class="s1">'pca.csv'</span><span class="p">),</span><span class="w"> </span><span class="n">quote</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="nb">F</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># write gene names</span><span class="w">
+</span><span class="n">write.table</span><span class="p">(</span><span class="w">
+  </span><span class="n">data.frame</span><span class="p">(</span><span class="s1">'gene'</span><span class="o">=</span><span class="n">rownames</span><span class="p">(</span><span class="n">counts_matrix</span><span class="p">)),</span><span class="n">file</span><span class="o">=</span><span class="s1">'gene_names.csv'</span><span class="p">,</span><span class="w">
+  </span><span class="n">quote</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="n">row.names</span><span class="o">=</span><span class="nb">F</span><span class="p">,</span><span class="n">col.names</span><span class="o">=</span><span class="nb">F</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="n">sc</span>
+<span class="kn">import</span> <span class="nn">anndata</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">io</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_matrix</span><span class="p">,</span> <span class="n">csr_matrix</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># load sparse matrix:
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">mmread</span><span class="p">(</span><span class="s">"counts.mtx"</span><span class="p">)</span>
+
+<span class="c1"># create anndata object
+</span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="p">.</span><span class="n">AnnData</span><span class="p">(</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">.</span><span class="n">transpose</span><span class="p">().</span><span class="n">tocsr</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># load cell metadata:
+</span><span class="n">cell_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"metadata.csv"</span><span class="p">)</span>
+
+<span class="c1"># load gene names:
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"gene_names.csv"</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">gene_names</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+<span class="c1"># set anndata observations and index obs by barcodes, var by gene names
+</span><span class="n">adata</span><span class="p">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">cell_meta</span>
+<span class="n">adata</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">adata</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'barcode'</span><span class="p">]</span>
+<span class="n">adata</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">gene_names</span>
+
+<span class="c1"># load dimensional reduction:
+</span><span class="n">pca</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"pca.csv"</span><span class="p">)</span>
+<span class="n">pca</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">adata</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span>
+
+<span class="c1"># set pca and umap
+</span><span class="n">adata</span><span class="p">.</span><span class="n">obsm</span><span class="p">[</span><span class="s">'X_pca'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">adata</span><span class="p">.</span><span class="n">obsm</span><span class="p">[</span><span class="s">'X_umap'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">adata</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'UMAP_1'</span><span class="p">].</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">adata</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'UMAP_2'</span><span class="p">].</span><span class="n">to_numpy</span><span class="p">())).</span><span class="n">T</span>
+
+<span class="c1"># plot a UMAP colored by sampleID to test:
+</span><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'SampleID'</span><span class="p">],</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># save dataset as anndata format
+</span><span class="n">adata</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'my_data.h5ad'</span><span class="p">)</span>
+
+<span class="c1"># reload dataset
+</span><span class="n">adata</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s">'my_data.h5ad'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="step-0-constructing-spliced-and-unspliced-counts-matrices">Step 0: Constructing spliced and unspliced counts matrices</h2>
+
+<p>Rather than using the same UMI-based genes-by-counts matrix that we used in Seurat, we need to have a matrix for spliced and unspliced transcripts. We can construct this matrix using the <a href="https://velocyto.org/velocyto.py/tutorial/cli.html">velocyto command line tool</a>,  or using <a href="https://bustools.github.io/BUS_notebooks_R/velocity.html">Kallisto-Bustools</a>. Here I am using the velocyto command line tool, simply because I had a working script from before Kallisto supported RNA velocity, so I have personally never bothered to try Kallisto.</p>
+
+<p>The velocyto command line tool has a function that works directly from the cellranger output directory, but it also can be used on any single-cell platform as long as you provide a .bam file. We also have to supply a reference .gtf annotation for your species (mm10 used here), and optionally you can provide a .gtf to mask repeat regions (recommended by velocyto).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">repeats</span><span class="o">=</span><span class="s2">"/path/to/repeats/mm10_rmsk.gtf"</span>
+<span class="nv">transcriptome</span><span class="o">=</span><span class="s2">"/path/to/annoation/file/gencode.vM25.annotation.gtf"</span>
+<span class="nv">cellranger_output</span><span class="o">=</span><span class="s2">"/path/to/cellranger/output/"</span>
+
+velocyto run10x <span class="nt">-m</span> <span class="nv">$repeats</span> <span class="se">\</span>
+                <span class="nv">$cellranger_output</span> <span class="se">\</span>
+                <span class="nv">$transcriptome</span>
+</code></pre></div></div>
+
+<h2 id="step-1-load-data">Step 1: Load data</h2>
+
+<p>Now that we have our input data properly formatted, we can load it into python. Velocyto created a separate spliced and unspliced matrix for each sample, so we first have to merge the different samples into one object. Additionally, I am reformatting the cell barcodes to match my anndata object with the full genes-by-cells data.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">scvelo</span> <span class="k">as</span> <span class="n">scv</span>
+<span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="n">sc</span>
+<span class="kn">import</span> <span class="nn">cellrank</span> <span class="k">as</span> <span class="n">cr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">anndata</span> <span class="k">as</span> <span class="n">ad</span>
+
+<span class="n">scv</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="s">'scvelo'</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">cr</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">adata</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s">'my_data.h5ad'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># load loom files for spliced/unspliced matrices for each sample:
+</span><span class="n">ldata1</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="s">'Sample1.loom'</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ldata2</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="s">'Sample2.loom'</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ldata3</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="s">'Sample3.loom'</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># rename barcodes in order to merge:
+</span><span class="n">barcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">':'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">ldata1</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">tolist</span><span class="p">()]</span>
+<span class="n">barcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">'_10'</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">barcodes</span><span class="p">]</span>
+<span class="n">ldata1</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">barcodes</span>
+
+<span class="n">barcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">':'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">ldata2</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">tolist</span><span class="p">()]</span>
+<span class="n">barcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">'_11'</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">barcodes</span><span class="p">]</span>
+<span class="n">ldata2</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">barcodes</span>
+
+<span class="n">barcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">':'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">ldata3</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">tolist</span><span class="p">()]</span>
+<span class="n">barcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">'_9'</span> <span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">barcodes</span><span class="p">]</span>
+<span class="n">ldata3</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">barcodes</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># make variable names unique
+</span><span class="n">ldata1</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+<span class="n">ldata2</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+<span class="n">ldata3</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># concatenate the three loom
+</span><span class="n">ldata</span> <span class="o">=</span> <span class="n">ldata1</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ldata2</span><span class="p">,</span> <span class="n">ldata3</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># merge matrices into the original adata object
+</span><span class="n">adata</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">ldata</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># plot umap to check
+</span><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s">'on data'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">''</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="s">'_celltypes.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_14_0.png" alt="png" /></p>
+
+<h2 id="part-2-computing-rna-velocity-using-scvelo">Part 2: Computing RNA velocity using scVelo</h2>
+
+<p>Finally we can actually use scVelo to compute RNA velocity. scVelo allows the user to use the steady-state model from the original 2018 publication as well as their updated dynamical model from the 2020 publication.</p>
+
+<p>First we inspect the proportion of spliced and unspliced transcripts in each of our cell clusters. Next we perform some pre-processing, and then we compute RNA velocity using the steady-state model (stochastic option).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">proportions</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s">'celltype_full'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_16_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># pre-process
+</span><span class="n">scv</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">filter_and_normalize</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">moments</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: Did not normalize X as it looks processed already. To enforce normalization, set `enforce=True`.
+Normalized count data: spliced, unspliced.
+WARNING: Did not modify X as it looks preprocessed already.
+computing neighbors
+    finished (0:00:14) --&gt; added
+    'distances' and 'connectivities', weighted adjacency matrices (adata.obsp)
+computing moments based on connectivities
+    finished (0:00:17) --&gt; added
+    'Ms' and 'Mu', moments of un/spliced abundances (adata.layers)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># compute velocity
+</span><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'stochastic'</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">velocity_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>computing velocities
+    finished (0:01:15) --&gt; added
+    'velocity', velocity vectors for each individual cell (adata.layers)
+computing velocity graph
+    finished (0:15:00) --&gt; added
+    'velocity_graph', sparse matrix with cosine correlations (adata.uns)
+</code></pre></div></div>
+
+<h2 id="part-21-visualize-velocity-fields">Part 2.1: Visualize velocity fields</h2>
+
+<p>We can get a broad visualiztion of RNA velocity across all genes and all cells by visualizing a vector field on top of the 2D dimensional reduction.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">'umap'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="s">'embedding.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>computing velocity embedding
+    finished (0:00:06) --&gt; added
+    'velocity_umap', embedded velocity vectors (adata.obsm)
+saving figure to file ./figures/scvelo_embedding.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_20_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity_embedding_grid</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">'umap'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="s">'embedding_grid.pdf'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">''</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>saving figure to file ./figures/scvelo_embedding_grid.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_21_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity_embedding_stream</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">'umap'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'celltype'</span><span class="p">,</span> <span class="s">'condition'</span><span class="p">],</span> <span class="n">save</span><span class="o">=</span><span class="s">'embedding_stream.pdf'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>figure cannot be saved as pdf, using png instead.
+saving figure to file ./figures/scvelo_embedding_stream.pdf.png
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_22_1.png" alt="png" /></p>
+
+<p>We can also visualize the dynamics of our favorite genes. Here we show the ratio of unspliced to spliced transcripts for Ptgds, as well as the velocity and expression values as feature plots.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># plot velocity of a selected gene
+</span><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s">'Ptgds'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_24_0.png" alt="png" /></p>
+
+<h2 id="part-3-downstream-analysis">Part 3: Downstream analysis</h2>
+
+<p>Here we show how to identify highly dynamic genes, compute a measure of coherence among neighboring cells in terms of  velocity, and perform pseudotime inference. Using the pseudotime trajectory, we can identify predicted ancestors of individual cells, and we can orient the directionality of partition-based graph abstractions (PAGA).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">rank_velocity_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">min_corr</span><span class="o">=</span><span class="p">.</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata</span><span class="p">.</span><span class="n">uns</span><span class="p">[</span><span class="s">'rank_velocity_genes'</span><span class="p">][</span><span class="s">'names'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ranking velocity genes
+    finished (0:00:23) --&gt; added
+    'rank_velocity_genes', sorted scores by group ids (adata.uns)
+    'spearmans_score', spearmans correlation scores (adata.var)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AF1</th>
+      <th>AF2</th>
+      <th>AF3</th>
+      <th>AF4</th>
+      <th>AF5</th>
+      <th>AF6</th>
+      <th>CP</th>
+      <th>EC1</th>
+      <th>EC2</th>
+      <th>MM1</th>
+      <th>MM2</th>
+      <th>MM3</th>
+      <th>OA</th>
+      <th>PE</th>
+      <th>PF1</th>
+      <th>PF2</th>
+      <th>SMC</th>
+      <th>UF</th>
+      <th>UI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam12</td>
+      <td>Zfpm2</td>
+      <td>Zfpm2</td>
+      <td>Ptprd</td>
+      <td>Pcdh7</td>
+      <td>Nav1</td>
+      <td>Sgip1</td>
+      <td>Tmtc2</td>
+      <td>St6galnac3</td>
+      <td>Elmo1</td>
+      <td>Rnf150</td>
+      <td>Tmcc3</td>
+      <td>Eya4</td>
+      <td>Cobll1</td>
+      <td>Nr3c2</td>
+      <td>Slc1a3</td>
+      <td>Dmd</td>
+      <td>Cadm2</td>
+      <td>Adam10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ghr</td>
+      <td>Efemp2</td>
+      <td>Mmp14</td>
+      <td>Mtch1</td>
+      <td>Rtl4</td>
+      <td>Zfpm2</td>
+      <td>Dlc1</td>
+      <td>Ptprg</td>
+      <td>Plcb1</td>
+      <td>Mir142hg</td>
+      <td>Ophn1</td>
+      <td>Gm5086</td>
+      <td>Soga3</td>
+      <td>Atp13a5</td>
+      <td>Fbxl7</td>
+      <td>Frmpd4</td>
+      <td>Ctnna3</td>
+      <td>Dync1i1</td>
+      <td>Trim37</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dpyd</td>
+      <td>Tmem208</td>
+      <td>Efna5</td>
+      <td>Cped1</td>
+      <td>Adamtsl1</td>
+      <td>Arl6ip4</td>
+      <td>Grm7</td>
+      <td>Mecom</td>
+      <td>Cyyr1</td>
+      <td>Rbm47</td>
+      <td>Frmd4b</td>
+      <td>Srgap2</td>
+      <td>Lrrc4c</td>
+      <td>Lnx2</td>
+      <td>Slc47a2</td>
+      <td>4930594M22Rik</td>
+      <td>Cacnb2</td>
+      <td>Nrp2</td>
+      <td>Esam</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Tcf4</td>
+      <td>Rpl29</td>
+      <td>Lrrc7</td>
+      <td>Ccbe1</td>
+      <td>Slc24a3</td>
+      <td>Rpl29</td>
+      <td>Rgs6</td>
+      <td>Dnm3</td>
+      <td>Ptprm</td>
+      <td>Gramd1b</td>
+      <td>Plekhg5</td>
+      <td>Slc7a8</td>
+      <td>Frmd4a</td>
+      <td>Apbb2</td>
+      <td>Tbx15</td>
+      <td>Acss3</td>
+      <td>Slc38a11</td>
+      <td>Ust</td>
+      <td>Sgms1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Rbms3</td>
+      <td>Mtch1</td>
+      <td>Dclk1</td>
+      <td>Cers6</td>
+      <td>Slit3</td>
+      <td>Efna5</td>
+      <td>Trpc3</td>
+      <td>Tjp1</td>
+      <td>Lrch1</td>
+      <td>Lyn</td>
+      <td>Runx1</td>
+      <td>Qk</td>
+      <td>Ptprt</td>
+      <td>Egflam</td>
+      <td>Mmp16</td>
+      <td>Kcnk2</td>
+      <td>Sox6</td>
+      <td>Sorbs1</td>
+      <td>Emcn</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+              <span class="n">add_outline</span><span class="o">=</span><span class="s">'AF6, AF1'</span><span class="p">)</span>
+
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s">'AF6'</span><span class="p">][:</span><span class="mi">3</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">'AF6'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s">'AF1'</span><span class="p">][:</span><span class="mi">3</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">'AF1'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_27_0.png" alt="png" /></p>
+
+<p><img src="/assets/images/scVelo/output_27_1.png" alt="png" /></p>
+
+<ul>
+  <li>Speed: length of the velocity vector</li>
+  <li>Coherence: how well a velocity vector correlates to its neighbors</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">velocity_confidence</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="s">'velocity_length'</span><span class="p">,</span> <span class="s">'velocity_confidence'</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">keys</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'coolwarm'</span><span class="p">,</span> <span class="n">perc</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">95</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--&gt; added 'velocity_length' (adata.obs)
+--&gt; added 'velocity_confidence' (adata.obs)
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_29_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_30_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">get_cell_transitions</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">'umap'</span><span class="p">,</span> <span class="n">starting_cell</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'lightgrey'</span><span class="p">,</span> <span class="n">edge_width</span><span class="o">=</span><span class="p">.</span><span class="mi">05</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'ascending'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'gnuplot'</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_31_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">velocity_pseudotime</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'velocity_pseudotime'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'gnuplot'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_32_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># this is needed due to a current bug - bugfix is coming soon.
+</span><span class="n">adata</span><span class="p">.</span><span class="n">uns</span><span class="p">[</span><span class="s">'neighbors'</span><span class="p">][</span><span class="s">'distances'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="p">.</span><span class="n">obsp</span><span class="p">[</span><span class="s">'distances'</span><span class="p">]</span>
+<span class="n">adata</span><span class="p">.</span><span class="n">uns</span><span class="p">[</span><span class="s">'neighbors'</span><span class="p">][</span><span class="s">'connectivities'</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="p">.</span><span class="n">obsp</span><span class="p">[</span><span class="s">'connectivities'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">paga</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">scv</span><span class="p">.</span><span class="n">get_df</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="s">'paga/transitions_confidence'</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">).</span><span class="n">T</span>
+<span class="c1">#df.style.background_gradient(cmap='Blues').format('{:.2g}')
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>running PAGA using priors: ['velocity_pseudotime']
+    finished (0:00:04) --&gt; added
+    'paga/connectivities', connectivities adjacency (adata.uns)
+    'paga/connectivities_tree', connectivities subtree (adata.uns)
+    'paga/transitions_confidence', velocity transitions (adata.uns)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">paga</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">'umap'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="p">.</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">min_edge_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">node_size_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: Invalid color key. Using grey instead.
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_35_1.png" alt="png" /></p>
+
+<h2 id="part-4-analyzing-a-specific-cell-population">Part 4: Analyzing a specific cell population</h2>
+
+<p>In a scRNA-seq dataset comprised of multiple cell lineages, it may be more relevant to perfom RNA velocity analysis separately for each major cell population Here we are going to perform RNA velocity analysis using only our fibroblast clusters. Additionally, we are going to use the dynamical model (from 2020 paper) whereas earlier we used the steady-state model (2018 paper).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cur_celltypes</span> <span class="o">=</span> <span class="p">[</span><span class="s">'AF1'</span><span class="p">,</span> <span class="s">'AF2'</span><span class="p">,</span> <span class="s">'AF3'</span><span class="p">,</span> <span class="s">'AF4'</span><span class="p">,</span> <span class="s">'AF5'</span><span class="p">,</span> <span class="s">'AF6'</span><span class="p">,</span> <span class="s">'PF1'</span><span class="p">,</span> <span class="s">'PF2'</span><span class="p">]</span>
+<span class="n">adata_subset</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'celltype'</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">cur_celltypes</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'celltype'</span><span class="p">,</span> <span class="s">'condition'</span><span class="p">],</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="p">[</span><span class="s">''</span><span class="p">,</span> <span class="s">''</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_38_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="s">'X_pca'</span><span class="p">)</span>
+
+<span class="c1"># pre-process
+</span><span class="n">scv</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">filter_and_normalize</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">moments</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: Did not normalize X as it looks processed already. To enforce normalization, set `enforce=True`.
+WARNING: Did not normalize spliced as it looks processed already. To enforce normalization, set `enforce=True`.
+WARNING: Did not normalize unspliced as it looks processed already. To enforce normalization, set `enforce=True`.
+WARNING: Did not modify X as it looks preprocessed already.
+computing neighbors
+    finished (0:00:03) --&gt; added
+    'distances' and 'connectivities', weighted adjacency matrices (adata.obsp)
+computing moments based on connectivities
+    finished (0:00:11) --&gt; added
+    'Ms' and 'Mu', moments of un/spliced abundances (adata.layers)
+computing velocities
+    finished (0:00:31) --&gt; added
+    'velocity', velocity vectors for each individual cell (adata.layers)
+computing velocity graph
+    finished (0:04:00) --&gt; added
+    'velocity_graph', sparse matrix with cosine correlations (adata.uns)
+</code></pre></div></div>
+
+<p>In this step, transcriptional dynamics are computed. This can take a lot longer than other steps, and may require the use of a high performance compute cluster such as HPC3 at UCI. This step took about 90 minutes to run on my laptop for ~15k cells.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">recover_dynamics</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>recovering dynamics
+    finished (0:55:01) --&gt; added
+    'fit_pars', fitted parameters for splicing dynamics (adata.var)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'dynamical'</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">velocity_graph</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>computing velocities
+    finished (0:01:54) --&gt; added
+    'velocity', velocity vectors for each individual cell (adata.layers)
+computing velocity graph
+    finished (0:01:37) --&gt; added
+    'velocity_graph', sparse matrix with cosine correlations (adata.uns)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">velocity_embedding_stream</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">'umap'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'celltype'</span><span class="p">,</span> <span class="s">'condition'</span><span class="p">],</span> <span class="n">save</span><span class="o">=</span><span class="s">'embedding_stream.pdf'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>computing velocity embedding
+    finished (0:00:08) --&gt; added
+    'velocity_umap', embedded velocity vectors (adata.obsm)
+figure cannot be saved as pdf, using png instead.
+saving figure to file ./figures/scvelo_embedding_stream.pdf.png
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_43_1.png" alt="png" /></p>
+
+<p>Using the dynamical model, we can actually look at the transcritpion rate, splicing rate, and degradation rate.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">adata_subset</span><span class="p">.</span><span class="n">var</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s">'fit_likelihood'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">.</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">df</span><span class="p">[</span><span class="s">'velocity_genes'</span><span class="p">]</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">xscale</span><span class="o">=</span><span class="s">'log'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">scv</span><span class="p">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">pl</span><span class="p">:</span>
+    <span class="n">pl</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'fit_alpha'</span><span class="p">],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">'transcription rate'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">pl</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'fit_beta'</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s">'fit_scaling'</span><span class="p">],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">'splicing rate'</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[.</span><span class="mi">1</span><span class="p">,</span> <span class="p">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">pl</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'fit_gamma'</span><span class="p">],</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">'degradation rate'</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[.</span><span class="mi">1</span><span class="p">,</span> <span class="p">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">scv</span><span class="p">.</span><span class="n">get_df</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="s">'fit*'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_45_0.png" alt="png" /></p>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_alpha</th>
+      <th>fit_beta</th>
+      <th>fit_gamma</th>
+      <th>fit_t_</th>
+      <th>fit_scaling</th>
+      <th>fit_std_u</th>
+      <th>fit_std_s</th>
+      <th>fit_likelihood</th>
+      <th>fit_u0</th>
+      <th>fit_s0</th>
+      <th>fit_pval_steady</th>
+      <th>fit_steady_u</th>
+      <th>fit_steady_s</th>
+      <th>fit_variance</th>
+      <th>fit_alignment_scaling</th>
+      <th>fit_r2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Sox17</th>
+      <td>0.898695</td>
+      <td>6.110614</td>
+      <td>0.484805</td>
+      <td>10.475681</td>
+      <td>0.105126</td>
+      <td>0.037980</td>
+      <td>0.421499</td>
+      <td>0.000018</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.492005</td>
+      <td>0.104282</td>
+      <td>1.640273</td>
+      <td>1.071412</td>
+      <td>1.816156</td>
+      <td>0.661397</td>
+    </tr>
+    <tr>
+      <th>Pcmtd1</th>
+      <td>0.211919</td>
+      <td>0.720424</td>
+      <td>0.264111</td>
+      <td>12.202008</td>
+      <td>0.248776</td>
+      <td>0.086398</td>
+      <td>0.164096</td>
+      <td>0.232746</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.336931</td>
+      <td>0.270257</td>
+      <td>0.446798</td>
+      <td>0.749243</td>
+      <td>2.372727</td>
+      <td>0.108137</td>
+    </tr>
+    <tr>
+      <th>Sgk3</th>
+      <td>0.031516</td>
+      <td>0.226350</td>
+      <td>0.197472</td>
+      <td>10.975034</td>
+      <td>1.652986</td>
+      <td>0.050927</td>
+      <td>0.038999</td>
+      <td>0.177014</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.159321</td>
+      <td>0.164692</td>
+      <td>0.126664</td>
+      <td>1.650863</td>
+      <td>3.383189</td>
+      <td>0.087770</td>
+    </tr>
+    <tr>
+      <th>Prex2</th>
+      <td>0.209454</td>
+      <td>0.229509</td>
+      <td>0.231223</td>
+      <td>17.965210</td>
+      <td>1.644350</td>
+      <td>0.334659</td>
+      <td>0.288491</td>
+      <td>0.303137</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.430445</td>
+      <td>0.757209</td>
+      <td>0.657950</td>
+      <td>0.545063</td>
+      <td>3.398314</td>
+      <td>0.796931</td>
+    </tr>
+    <tr>
+      <th>Sulf1</th>
+      <td>0.184210</td>
+      <td>0.221469</td>
+      <td>0.183979</td>
+      <td>14.692180</td>
+      <td>1.693538</td>
+      <td>0.300075</td>
+      <td>0.217056</td>
+      <td>0.243579</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.311456</td>
+      <td>0.848147</td>
+      <td>0.743920</td>
+      <td>0.904572</td>
+      <td>3.110569</td>
+      <td>0.164060</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Similar to pseudotime, ‘latent time’ is computed from the dynamical model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scv</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">latent_time</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'latent_time'</span><span class="p">,</span> <span class="n">color_map</span><span class="o">=</span><span class="s">'gnuplot'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>computing latent time using root_cells as prior
+    finished (0:00:48) --&gt; added
+    'latent_time', shared time (adata.obs)
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_47_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">top_genes</span> <span class="o">=</span> <span class="n">adata_subset</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'fit_likelihood'</span><span class="p">].</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="n">index</span><span class="p">[:</span><span class="mi">300</span><span class="p">]</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="n">top_genes</span><span class="p">,</span> <span class="n">sortby</span><span class="o">=</span><span class="s">'latent_time'</span><span class="p">,</span> <span class="n">col_color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">n_convolve</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_48_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">top_genes</span> <span class="o">=</span> <span class="n">adata_subset</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'fit_likelihood'</span><span class="p">].</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="n">index</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">top_genes</span><span class="p">[:</span><span class="mi">15</span><span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_49_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">var_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Rps3'</span><span class="p">,</span> <span class="s">'Col1a2'</span><span class="p">,</span> <span class="s">'Tmeff2'</span><span class="p">]</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">var_names</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">scv</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_subset</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'latent_time'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">var_names</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'celltype'</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><img src="/assets/images/scVelo/output_50_0.png" alt="png" /></p>
+
+<p><img src="/assets/images/scVelo/output_50_1.png" alt="png" /></p>
+
+<h1 id="conclusion-and-future-directions">Conclusion and future directions:</h1>
+
+<p>In this tutorial we have learned how to perform RNA velocity analysis in scRNA-seq data using scVelo, as well as some downstream applications of RNA velocity such as identifying potential cell-state transitions and identifying genes that are being induced / repressed. RNA velocity is the starting point for a cell fate analysis program called <a href="https://cellrank.readthedocs.io/en/latest/auto_examples/index.html">CellRank</a>, which can provide further insights for the analysis of cell lineages.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+
+    </div>
+
+</article>
+<div class="post-nav"><a class="previous" href="/integration/2020/12/03/scanorama_demo_pancreas.html" title="Scanorama">Scanorama</a><a class="next" href="/signaling/2021/02/23/cellchat.html" title="CellChat">CellChat</a></div><div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/integration/2020/12/03/scanorama_demo_pancreas.html" title="CellChat">Scanorama</a></li><li><a class="post-link" href="/splicing/2022/01/27/swan.html" title="CellChat">Swan</a></li><li><a class="post-link" href="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html" title="CellChat">A Tale of Two Aligners</a></li><li><a class="post-link" href="/pseudotime/2021/02/09/scvelo-tutorial.html" title="CellChat">scVelo</a></li></ul>
+    </div><div class="post-comments">  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '/pseudotime/2021/02/09/scvelo-tutorial.html';
+      this.page.identifier = '/pseudotime/2021/02/09/scvelo-tutorial.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://https-uci-genpals-github-io.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div>Copyright © 2020-2021 @UCI genPALS</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/feed.xml">via RSS</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

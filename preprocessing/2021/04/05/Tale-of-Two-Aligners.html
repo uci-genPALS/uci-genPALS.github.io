@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c"></meta><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A Tale of Two Aligners | UCI genPALS</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="A Tale of Two Aligners" />
+<meta name="author" content="Emmanuel Dollinger" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Author: Emmanuel Dollinger" />
+<meta property="og:description" content="Author: Emmanuel Dollinger" />
+<link rel="canonical" href="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html" />
+<meta property="og:url" content="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html" />
+<meta property="og:site_name" content="UCI genPALS" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-05T00:00:00-07:00" />
+<script type="application/ld+json">
+{"headline":"A Tale of Two Aligners","url":"/preprocessing/2021/04/05/Tale-of-Two-Aligners.html","dateModified":"2021-04-05T00:00:00-07:00","datePublished":"2021-04-05T00:00:00-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/preprocessing/2021/04/05/Tale-of-Two-Aligners.html"},"author":{"@type":"Person","name":"Emmanuel Dollinger"},"description":"Author: Emmanuel Dollinger","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+  <!-- and it's easy to individually load additional languages -->
+  <script charset="UTF-8"
+          src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="UCI genPALS" /></head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner"><span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="UCI genPALS" src="" onerror="this.style.display='none'">
+  UCI genPALS
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger"><a class="page-link" href="/about.html">ABOUT</a><a class="page-link" href="/archives.html">ARCHIVES</a><a class="page-link" href="/categories.html">CATEGORIES</a><a class="page-link" href="/events.html">EVENTS</a><a class="page-link" href="/">HOME</a><a class="page-link" href="/resources.html">RESOURCES</a><a class="page-link" href="/symposium.html">GENPALS SYMPOSIUM 2021</a><a class="page-link" href="/tags.html">TAGS</a>
+
+
+
+
+<span class="page-link">
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://www.countryflags.io/us/flat/64.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://www.countryflags.io/fr/flat/64.png" title="Franch">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://www.countryflags.io/cn/flat/64.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://www.countryflags.io/jp/flat/64.png" title="Japan">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://www.countryflags.io/kr/flat/64.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://www.countryflags.io/ru/flat/64.png" title="Russia">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: '',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span></div>
+        </nav></div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="page-banner">
+    <div class="page-banner-img">
+      <div style="background-image: url(/assets/images/banners/twoaligners.png)"></div>
+    </div>
+    <div class="wrapper">
+      <div class="page-banner-inner"><header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">A Tale of Two Aligners</h1>
+  <h3 class="post-subtitle">Cellranger vs Kallisto for single-cell transcriptomics pre-processing</h3>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2021-04-05T00:00:00-07:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Apr 05, 2021
+    </time>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 49 mins</span>
+  </p><div class="post-tags"><a class="post-tag" href="/tags.html#single-cell">#single-cell</a><a class="post-tag" href="/tags.html#preprocessing">#preprocessing</a><a class="post-tag" href="/tags.html#python">#python</a><a class="post-tag" href="/tags.html#scanpy">#scanpy</a><a class="post-tag" href="/tags.html#hpc">#hpc</a><a class="post-tag" href="/tags.html#integration">#integration</a></div></header>
+</div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('on' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>Author: Emmanuel Dollinger</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>Goal of this notebook is to align mouse single cell transcriptomic reads using cellranger and kallisto to compare the outputs. All cellranger code was ran on the HPC3, all kallisto code was run on a desktop with 10 cores (which right there is a clue as to which aligner I prefer). I copied the code ran on the HPC3 below.</p>
+
+<h2 id="part-1-cellranger">Part 1: cellranger</h2>
+
+<p>First I built a reference, see https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_mr</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># wget files from Ensembl:
+# !wget ftp://ftp.ensembl.org/pub/release-103/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz
+# !wget ftp://ftp.ensembl.org/pub/release-103/gtf/mus_musculus/Mus_musculus.GRCm39.103.gtf.gz
+</span></code></pre></div></div>
+
+<p>Uploaded both files to HPC3 using scp.</p>
+
+<p>First filtered the gtf, script submitted: (see https://rcic.uci.edu/hpc3/examples.html for slurm script examples)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/bin/bash
+</span>
+<span class="c1">#SBATCH --job-name=cellrangermkref      ## Name of the job.
+#SBATCH -A qnie_lab     ## account to charge
+#SBATCH -p standard          ## partition/queue name
+#SBATCH --nodes=1            ## (-N) number of nodes to use
+#SBATCH --ntasks=1           ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=10    ## number of cores the job needs
+#SBATCH --error=slurm-%J.err ## error log file
+</span>
+<span class="c1"># Attempt to make custom cellranger reference. See https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_mr
+</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cellranger</span><span class="o">/</span><span class="mf">3.1</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="n">cellranger</span> <span class="n">mkgtf</span> \
+<span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">edolling</span><span class="o">/</span><span class="n">GenPALSReadAlignerComparison</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="p">.</span><span class="n">GRCm39</span><span class="p">.</span><span class="mf">103.</span><span class="n">gtf</span> \
+<span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">edolling</span><span class="o">/</span><span class="n">GenPALSReadAlignerComparison</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="p">.</span><span class="n">GRCm39</span><span class="p">.</span><span class="mf">103.</span><span class="n">filtered</span><span class="p">.</span><span class="n">gtf</span>
+</code></pre></div></div>
+
+<p>Took &gt;5 minutes.</p>
+
+<p>Now create custom index: Notice the queue I submitted to is the highmem queue, you need to ask the HPC3 folks to add you to this queue.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/bin/bash
+</span>
+<span class="c1">#SBATCH --job-name=cellrangermkref      ## Name of the job.
+#SBATCH -A qnie_lab     ## account to charge
+#SBATCH -p highmem          ## partition/queue name
+#SBATCH --nodes=1            ## (-N) number of nodes to use
+#SBATCH --ntasks=1           ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=20    ## number of cores the job needs
+#SBATCH --error=slurm-%J.err ## error log file
+</span>
+<span class="c1"># Attempt to make custom cellranger reference. See https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_mr
+</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cellranger</span><span class="o">/</span><span class="mf">3.1</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="n">cellranger</span> <span class="n">mkref</span> \
+<span class="o">--</span><span class="n">genome</span><span class="o">=</span><span class="n">cellranger_ref_GRCm39</span><span class="p">.</span><span class="mi">103</span> \
+<span class="o">--</span><span class="n">genes</span><span class="o">=/</span><span class="n">pub</span><span class="o">/</span><span class="n">edolling</span><span class="o">/</span><span class="n">GenPALSReadAlignerComparison</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="p">.</span><span class="n">GRCm39</span><span class="p">.</span><span class="mf">103.</span><span class="n">filtered</span><span class="p">.</span><span class="n">gtf</span> \
+<span class="o">--</span><span class="n">fasta</span><span class="o">=/</span><span class="n">pub</span><span class="o">/</span><span class="n">edolling</span><span class="o">/</span><span class="n">GenPALSReadAlignerComparison</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="p">.</span><span class="n">GRCm39</span><span class="p">.</span><span class="n">dna</span><span class="p">.</span><span class="n">primary_assembly</span><span class="p">.</span><span class="n">fa</span>
+</code></pre></div></div>
+
+<p>~45 minutes.</p>
+
+<p>Now I actually ran the aligner on that index. This took on the order of 5h with 2 nodes * 20 cores. Below is the code to align mouse F1, F2 was exactly the same.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/bin/bash
+</span>
+<span class="c1">#SBATCH --job-name=count_F1      ## Name of the job.
+#SBATCH -A qnie_lab     ## account to charge
+#SBATCH -p highmem          ## partition/queue name
+#SBATCH --nodes=2            ## (-N) number of nodes to use
+#SBATCH --ntasks=2           ## (-n) number of tasks to launch
+#SBATCH --cpus-per-task=20    ## number of cores the job needs
+#SBATCH --error=slurm-%J.err ## error log file
+</span>
+<span class="c1"># Run cellranger count on reads. Index was filtered in cellrangerfiltergtf.sub and built in cellrangermkref.sub.
+</span><span class="n">module</span> <span class="n">load</span> <span class="n">cellranger</span><span class="o">/</span><span class="mf">3.1</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="n">cellranger</span> <span class="n">count</span> <span class="o">--</span><span class="nb">id</span><span class="o">=</span><span class="n">cellrangercomparison_F1</span> <span class="o">--</span><span class="n">fastqs</span><span class="o">=/</span><span class="n">pub</span><span class="o">/</span><span class="n">edolling</span><span class="o">/</span><span class="n">GenPALSReadAlignerComparison</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">GliPtch6wtam</span><span class="o">/</span><span class="n">F1Reads</span> \
+<span class="o">--</span><span class="n">transcriptome</span><span class="o">=/</span><span class="n">pub</span><span class="o">/</span><span class="n">edolling</span><span class="o">/</span><span class="n">GenPALSReadAlignerComparison</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">cellranger_ref_GRCm39</span><span class="p">.</span><span class="mi">103</span> \
+</code></pre></div></div>
+
+<p>scp the files down to the desktop.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#eg
+# scp edolling@hpc3.rcic.uci.edu:/pub/edolling/GenPALSReadAlignerComparison/Code/cellrangercomparison_F2/outs/raw_feature_bc_matrix.h5 ./
+</span></code></pre></div></div>
+
+<h2 id="part-2-kallisto-code">Part 2: kallisto code.</h2>
+<p>As specified above, all code in this section was run on a desktop with 10 cores. Also notice that the reads and the files I used to build the index are the same as in part 1, but for kallisto I concatenated the reads just to make my life a little easier.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">pwd</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/emmanueldollinger/Documents/Projects/GenPALS/Code
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">kb</span> <span class="n">ref</span> <span class="o">-</span><span class="n">i</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">transcriptome</span><span class="p">.</span><span class="n">idx</span> <span class="o">-</span><span class="n">g</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">transcripts_to_genes</span><span class="p">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">f1</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">cdna</span><span class="p">.</span><span class="n">fa</span> \
+<span class="o">~/</span><span class="n">Documents</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">BulkRNAseq</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">IndexFilesGRCm39</span><span class="p">.</span><span class="mi">103</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="p">.</span><span class="n">GRCm39</span><span class="p">.</span><span class="n">dna</span><span class="p">.</span><span class="n">primary_assembly</span><span class="p">.</span><span class="n">fa</span><span class="p">.</span><span class="n">gz</span> \
+<span class="o">~/</span><span class="n">Documents</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">BulkRNAseq</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">IndexFilesGRCm39</span><span class="p">.</span><span class="mi">103</span><span class="o">/</span><span class="n">Mus_musculus</span><span class="p">.</span><span class="n">GRCm39</span><span class="p">.</span><span class="mf">103.</span><span class="n">filtered</span><span class="p">.</span><span class="n">gtf</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2021-03-29 11:05:53,300]    INFO Preparing /Users/emmanueldollinger/Documents/Projects/BulkRNAseq/Data/IndexFilesGRCm39.103/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz, /Users/emmanueldollinger/Documents/Projects/BulkRNAseq/Data/IndexFilesGRCm39.103/Mus_musculus.GRCm39.103.filtered.gtf
+[2021-03-29 11:05:53,300]    INFO Creating transcript-to-gene mapping at /Users/emmanueldollinger/Documents/Projects/GenPALS/Code/tmp/tmp2mjuur6u
+[2021-03-29 11:06:24,915]    INFO Decompressing /Users/emmanueldollinger/Documents/Projects/BulkRNAseq/Data/IndexFilesGRCm39.103/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz to tmp
+[2021-03-29 11:06:38,892]    INFO Sorting tmp/Mus_musculus.GRCm39.dna.primary_assembly.fa to /Users/emmanueldollinger/Documents/Projects/GenPALS/Code/tmp/tmp179k8x_7
+[2021-03-29 11:12:21,963]    INFO Sorting /Users/emmanueldollinger/Documents/Projects/BulkRNAseq/Data/IndexFilesGRCm39.103/Mus_musculus.GRCm39.103.filtered.gtf to /Users/emmanueldollinger/Documents/Projects/GenPALS/Code/tmp/tmp3ez7oqdu
+[2021-03-29 11:13:19,371]    INFO Splitting genome tmp/Mus_musculus.GRCm39.dna.primary_assembly.fa into cDNA at /Users/emmanueldollinger/Documents/Projects/GenPALS/Code/tmp/tmpnvnlj06p
+[2021-03-29 11:13:19,371] WARNING The following chromosomes were found in the FASTA but does not have any "transcript" features in the GTF: GL456382.1, GL456372.1, MU069434.1, GL456239.1, JH584301.1, GL456394.1, JH584302.1, GL456381.1, MU069435.1, GL456379.1, GL456367.1, GL456383.1, GL456387.1, GL456368.1, GL456389.1, JH584300.1, GL456359.1, GL456396.1, GL456392.1, GL456370.1, GL456390.1, GL456378.1, GL456385.1, GL456366.1, GL456360.1. No sequences will be generated for these chromosomes.
+[2021-03-29 11:14:06,971]    INFO Wrote 140725 cDNA transcripts
+[2021-03-29 11:14:06,976]    INFO Concatenating 1 transcript-to-gene mappings to ../Data/transcripts_to_genes.txt
+[2021-03-29 11:14:07,050]    INFO Concatenating 1 cDNAs to ../Data/cdna.fa
+[2021-03-29 11:14:07,729]    INFO Indexing ../Data/cdna.fa to ../Data/transcriptome.idx
+</code></pre></div></div>
+
+<p>Now concat the reads together (I’m assuming no batch effects between runs here).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">mkdir</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">cat</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Gli</span>\ <span class="n">Ptch</span>\ <span class="mi">6</span><span class="n">w</span>\ <span class="n">tam</span>\ <span class="n">scSeq</span><span class="o">/</span><span class="n">KW_6W_F1</span><span class="o">*</span><span class="n">R1</span><span class="o">*</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F1_R1</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span>
+<span class="err">!</span><span class="n">cat</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Gli</span>\ <span class="n">Ptch</span>\ <span class="mi">6</span><span class="n">w</span>\ <span class="n">tam</span>\ <span class="n">scSeq</span><span class="o">/</span><span class="n">KW_6W_F1</span><span class="o">*</span><span class="n">R2</span><span class="o">*</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F1_R2</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span>
+
+<span class="err">!</span><span class="n">cat</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Gli</span>\ <span class="n">Ptch</span>\ <span class="mi">6</span><span class="n">w</span>\ <span class="n">tam</span>\ <span class="n">scSeq</span><span class="o">/</span><span class="n">KW_6W_F2</span><span class="o">*</span><span class="n">R1</span><span class="o">*</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F2_R1</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span>
+<span class="err">!</span><span class="n">cat</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Gli</span>\ <span class="n">Ptch</span>\ <span class="mi">6</span><span class="n">w</span>\ <span class="n">tam</span>\ <span class="n">scSeq</span><span class="o">/</span><span class="n">KW_6W_F2</span><span class="o">*</span><span class="n">R2</span><span class="o">*</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span> <span class="o">&gt;</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F2_R2</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">ls</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>F1_R1.fastq.gz F1_R2.fastq.gz F2_R1.fastq.gz F2_R2.fastq.gz
+</code></pre></div></div>
+
+<p>Run kallisto on F1 and F2.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">kb</span> <span class="n">count</span> <span class="o">--</span><span class="n">h5ad</span> <span class="o">-</span><span class="n">i</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">transcriptome</span><span class="p">.</span><span class="n">idx</span> \
+<span class="o">-</span><span class="n">g</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">transcripts_to_genes</span><span class="p">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">x</span> <span class="mi">10</span><span class="n">XV3</span> \
+<span class="o">-</span><span class="n">o</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">kallisto_align_F1</span> <span class="o">--</span><span class="nb">filter</span> <span class="n">bustools</span> <span class="o">--</span><span class="n">overwrite</span> <span class="o">-</span><span class="n">t</span> <span class="mi">10</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F1_R1</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F1_R2</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2021-03-29 12:11:37,260]    INFO Using index ../Data/transcriptome.idx to generate BUS file to ../Data/kallisto_align_F1 from
+[2021-03-29 12:11:37,260]    INFO         ../Data/CatFiles/F1_R1.fastq.gz
+[2021-03-29 12:11:37,260]    INFO         ../Data/CatFiles/F1_R2.fastq.gz
+[2021-03-29 12:16:42,491]    INFO Sorting BUS file ../Data/kallisto_align_F1/output.bus to ../Data/kallisto_align_F1/tmp/output.s.bus
+[2021-03-29 12:17:40,312]    INFO Whitelist not provided
+[2021-03-29 12:17:40,312]    INFO Copying pre-packaged 10XV3 whitelist to ../Data/kallisto_align_F1
+[2021-03-29 12:17:40,904]    INFO Inspecting BUS file ../Data/kallisto_align_F1/tmp/output.s.bus
+[2021-03-29 12:18:17,413]    INFO Correcting BUS records in ../Data/kallisto_align_F1/tmp/output.s.bus to ../Data/kallisto_align_F1/tmp/output.s.c.bus with whitelist ../Data/kallisto_align_F1/10xv3_whitelist.txt
+[2021-03-29 12:18:50,875]    INFO Sorting BUS file ../Data/kallisto_align_F1/tmp/output.s.c.bus to ../Data/kallisto_align_F1/output.unfiltered.bus
+[2021-03-29 12:19:27,397]    INFO Generating count matrix ../Data/kallisto_align_F1/counts_unfiltered/cells_x_genes from BUS file ../Data/kallisto_align_F1/output.unfiltered.bus
+[2021-03-29 12:20:20,001]    INFO Reading matrix ../Data/kallisto_align_F1/counts_unfiltered/cells_x_genes.mtx
+[2021-03-29 12:20:47,966]    INFO Writing matrix to h5ad ../Data/kallisto_align_F1/counts_unfiltered/adata.h5ad
+/Users/emmanueldollinger/miniconda3/lib/python3.7/site-packages/anndata/_core/anndata.py:1192: FutureWarning: is_categorical is deprecated and will be removed in a future version.  Use is_categorical_dtype instead
+  if is_string_dtype(df[key]) and not is_categorical(df[key])
+... storing 'gene_name' as categorical
+[2021-03-29 12:20:49,227]    INFO Filtering with bustools
+[2021-03-29 12:20:49,227]    INFO Generating whitelist ../Data/kallisto_align_F1/filter_barcodes.txt from BUS file ../Data/kallisto_align_F1/output.unfiltered.bus
+[2021-03-29 12:20:50,233]    INFO Correcting BUS records in ../Data/kallisto_align_F1/output.unfiltered.bus to ../Data/kallisto_align_F1/tmp/output.unfiltered.c.bus with whitelist ../Data/kallisto_align_F1/filter_barcodes.txt
+[2021-03-29 12:21:14,047]    INFO Sorting BUS file ../Data/kallisto_align_F1/tmp/output.unfiltered.c.bus to ../Data/kallisto_align_F1/output.filtered.bus
+[2021-03-29 12:21:43,460]    INFO Generating count matrix ../Data/kallisto_align_F1/counts_filtered/cells_x_genes from BUS file ../Data/kallisto_align_F1/output.filtered.bus
+[2021-03-29 12:22:15,664]    INFO Reading matrix ../Data/kallisto_align_F1/counts_filtered/cells_x_genes.mtx
+[2021-03-29 12:22:31,402]    INFO Writing matrix to h5ad ../Data/kallisto_align_F1/counts_filtered/adata.h5ad
+... storing 'gene_name' as categorical
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">kb</span> <span class="n">count</span> <span class="o">--</span><span class="n">h5ad</span> <span class="o">-</span><span class="n">i</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">transcriptome</span><span class="p">.</span><span class="n">idx</span> \
+<span class="o">-</span><span class="n">g</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">transcripts_to_genes</span><span class="p">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">x</span> <span class="mi">10</span><span class="n">XV3</span> \
+<span class="o">-</span><span class="n">o</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">kallisto_align_F2</span> <span class="o">--</span><span class="nb">filter</span> <span class="n">bustools</span> <span class="o">--</span><span class="n">overwrite</span> <span class="o">-</span><span class="n">t</span> <span class="mi">10</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F2_R1</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span> <span class="p">..</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">CatFiles</span><span class="o">/</span><span class="n">F2_R2</span><span class="p">.</span><span class="n">fastq</span><span class="p">.</span><span class="n">gz</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2021-03-29 12:22:33,429]    INFO Using index ../Data/transcriptome.idx to generate BUS file to ../Data/kallisto_align_F2 from
+[2021-03-29 12:22:33,429]    INFO         ../Data/CatFiles/F2_R1.fastq.gz
+[2021-03-29 12:22:33,429]    INFO         ../Data/CatFiles/F2_R2.fastq.gz
+[2021-03-29 12:27:43,257]    INFO Sorting BUS file ../Data/kallisto_align_F2/output.bus to ../Data/kallisto_align_F2/tmp/output.s.bus
+[2021-03-29 12:28:30,055]    INFO Whitelist not provided
+[2021-03-29 12:28:30,055]    INFO Copying pre-packaged 10XV3 whitelist to ../Data/kallisto_align_F2
+[2021-03-29 12:28:30,620]    INFO Inspecting BUS file ../Data/kallisto_align_F2/tmp/output.s.bus
+[2021-03-29 12:28:59,069]    INFO Correcting BUS records in ../Data/kallisto_align_F2/tmp/output.s.bus to ../Data/kallisto_align_F2/tmp/output.s.c.bus with whitelist ../Data/kallisto_align_F2/10xv3_whitelist.txt
+[2021-03-29 12:29:27,351]    INFO Sorting BUS file ../Data/kallisto_align_F2/tmp/output.s.c.bus to ../Data/kallisto_align_F2/output.unfiltered.bus
+[2021-03-29 12:29:55,576]    INFO Generating count matrix ../Data/kallisto_align_F2/counts_unfiltered/cells_x_genes from BUS file ../Data/kallisto_align_F2/output.unfiltered.bus
+[2021-03-29 12:30:33,051]    INFO Reading matrix ../Data/kallisto_align_F2/counts_unfiltered/cells_x_genes.mtx
+[2021-03-29 12:30:53,474]    INFO Writing matrix to h5ad ../Data/kallisto_align_F2/counts_unfiltered/adata.h5ad
+/Users/emmanueldollinger/miniconda3/lib/python3.7/site-packages/anndata/_core/anndata.py:1192: FutureWarning: is_categorical is deprecated and will be removed in a future version.  Use is_categorical_dtype instead
+  if is_string_dtype(df[key]) and not is_categorical(df[key])
+... storing 'gene_name' as categorical
+[2021-03-29 12:30:54,842]    INFO Filtering with bustools
+[2021-03-29 12:30:54,842]    INFO Generating whitelist ../Data/kallisto_align_F2/filter_barcodes.txt from BUS file ../Data/kallisto_align_F2/output.unfiltered.bus
+[2021-03-29 12:30:55,564]    INFO Correcting BUS records in ../Data/kallisto_align_F2/output.unfiltered.bus to ../Data/kallisto_align_F2/tmp/output.unfiltered.c.bus with whitelist ../Data/kallisto_align_F2/filter_barcodes.txt
+[2021-03-29 12:31:11,453]    INFO Sorting BUS file ../Data/kallisto_align_F2/tmp/output.unfiltered.c.bus to ../Data/kallisto_align_F2/output.filtered.bus
+[2021-03-29 12:31:30,731]    INFO Generating count matrix ../Data/kallisto_align_F2/counts_filtered/cells_x_genes from BUS file ../Data/kallisto_align_F2/output.filtered.bus
+[2021-03-29 12:31:48,377]    INFO Reading matrix ../Data/kallisto_align_F2/counts_filtered/cells_x_genes.mtx
+[2021-03-29 12:31:56,373]    INFO Writing matrix to h5ad ../Data/kallisto_align_F2/counts_filtered/adata.h5ad
+... storing 'gene_name' as categorical
+</code></pre></div></div>
+
+<h1 id="part-3-comparison">Part 3: Comparison</h1>
+
+<h2 id="load-all-of-the-data">Load all of the data.</h2>
+
+<p>import chunk</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="n">sc</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="p">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="nb">FutureWarning</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span> <span class="o">=</span>  <span class="n">sc</span><span class="p">.</span><span class="n">read_10x_h5</span><span class="p">(</span><span class="s">'../Data/raw_feature_bc_matrixF1.h5'</span><span class="p">)</span>
+<span class="n">F1_cellranger</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+
+<span class="n">F2_cellranger</span> <span class="o">=</span>  <span class="n">sc</span><span class="p">.</span><span class="n">read_10x_h5</span><span class="p">(</span><span class="s">'../Data/raw_feature_bc_matrixF2.h5'</span><span class="p">)</span>
+<span class="n">F2_cellranger</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+Variable names are not unique. To make them unique, call `.var_names_make_unique`.
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_kallisto</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s">'../Data/kallisto_align_F1/counts_unfiltered/adata.h5ad'</span><span class="p">)</span>
+<span class="n">F1_kallisto</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+
+<span class="n">F2_kallisto</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s">'../Data/kallisto_align_F2/counts_unfiltered/adata.h5ad'</span><span class="p">)</span>
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Clean up kallisto gene names.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_kallisto</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'gene_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">F1_kallisto</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'gene_name'</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'gene_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">F2_kallisto</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'gene_name'</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_kallisto</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">'gene_name'</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">'gene_name'</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_kallisto</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>First, let’s filter genes per cell and cells per gene:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 6794880 × 53700
+    var: 'gene_ids', 'feature_types', 'genome'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ListOfAdata</span> <span class="o">=</span> <span class="p">[</span><span class="n">F1_cellranger</span><span class="p">,</span> <span class="n">F1_kallisto</span><span class="p">,</span> <span class="n">F2_cellranger</span><span class="p">,</span> <span class="n">F2_kallisto</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">ListOfAdata</span><span class="p">:</span>
+
+    <span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">filter_cells</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_genes</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_cells</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">calculate_qc_metrics</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">percent_top</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">log1p</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 7964 × 21150
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts'
+    var: 'gene_ids', 'feature_types', 'genome', 'n_cells', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_kallisto</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 7977 × 27046
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts'
+    var: 'n_cells', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F2_cellranger</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 5515 × 20220
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts'
+    var: 'gene_ids', 'feature_types', 'genome', 'n_cells', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F2_kallisto</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 5470 × 25936
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts'
+    var: 'n_cells', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts'
+</code></pre></div></div>
+
+<p>Save anndatas.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span><span class="p">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s">'../Data/F1_cellranger.h5ad'</span><span class="p">)</span>
+<span class="n">F2_cellranger</span><span class="p">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s">'../Data/F2_cellranger.h5ad'</span><span class="p">)</span>
+<span class="n">F1_kallisto</span><span class="p">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s">'../Data/F1_kallisto.h5ad'</span><span class="p">)</span>
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s">'../Data/F2_kallisto.h5ad'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>... storing 'feature_types' as categorical
+... storing 'genome' as categorical
+... storing 'feature_types' as categorical
+... storing 'genome' as categorical
+</code></pre></div></div>
+
+<p>Plot metrics of number of cells and number of counts</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dfMetrics</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">dfMetrics</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="p">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">])]).</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">dfMetrics</span><span class="p">[</span><span class="s">"Metric"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">tile</span><span class="p">([</span><span class="s">'NumberOfCells'</span><span class="p">,</span><span class="s">'NumberOfCounts'</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">dfMetrics</span><span class="p">[</span><span class="s">"Number"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7960</span><span class="p">,</span><span class="mi">21150</span><span class="p">,</span><span class="mi">7977</span><span class="p">,</span><span class="mi">27046</span><span class="p">,</span><span class="mi">5512</span><span class="p">,</span><span class="mi">20220</span><span class="p">,</span><span class="mi">5470</span><span class="p">,</span><span class="mi">25936</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">dfMetrics</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'Metric'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'Number'</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s">'Batch'</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#ad2828'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fa3a3a'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">hue_order</span> <span class="o">=</span> <span class="p">[</span><span class="s">'F1_cellranger'</span><span class="p">,</span><span class="s">'F1_kallisto'</span><span class="p">,</span><span class="s">'F2_cellranger'</span><span class="p">,</span><span class="s">'F2_kallisto'</span><span class="p">])</span>
+
+<span class="c1"># plt.xscale("log")
+# plt.xlabel("Total counts of transcriptic counts per cell.")
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'/Users/emmanueldollinger/Desktop/Metrics.pdf'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_47_0.png" alt="png" /></p>
+
+<p>Plot transcripts/cell and genes/cell</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'F1'</span>
+<span class="n">F1_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Aligner'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'cellranger'</span>
+
+<span class="n">F2_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'F2'</span>
+<span class="n">F2_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Aligner'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'cellranger'</span>
+
+<span class="n">F1_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'F1'</span>
+<span class="n">F1_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Aligner'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'kallisto'</span>
+
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'F2'</span>
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Aligner'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'kallisto'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">obs</span> <span class="o">=</span> <span class="n">F1_cellranger</span><span class="p">.</span><span class="n">obs</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">obs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">F2_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">)</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">obs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">F1_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">)</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">obs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">F2_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">obs</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n_genes</th>
+      <th>n_genes_by_counts</th>
+      <th>total_counts</th>
+      <th>Mouse</th>
+      <th>Aligner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AAACCCAAGATGGGCT-1</th>
+      <td>250</td>
+      <td>250</td>
+      <td>444.0</td>
+      <td>F1</td>
+      <td>cellranger</td>
+    </tr>
+    <tr>
+      <th>AAACCCAAGCTCGTGC-1</th>
+      <td>2244</td>
+      <td>2244</td>
+      <td>6383.0</td>
+      <td>F1</td>
+      <td>cellranger</td>
+    </tr>
+    <tr>
+      <th>AAACCCACAATCTAGC-1</th>
+      <td>4334</td>
+      <td>4330</td>
+      <td>21088.0</td>
+      <td>F1</td>
+      <td>cellranger</td>
+    </tr>
+    <tr>
+      <th>AAACCCACAGTTGAAA-1</th>
+      <td>227</td>
+      <td>227</td>
+      <td>568.0</td>
+      <td>F1</td>
+      <td>cellranger</td>
+    </tr>
+    <tr>
+      <th>AAACCCACATGGGAAC-1</th>
+      <td>757</td>
+      <td>757</td>
+      <td>1291.0</td>
+      <td>F1</td>
+      <td>cellranger</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>TTTGTTGCAAGAAACT</th>
+      <td>414</td>
+      <td>414</td>
+      <td>1021.0</td>
+      <td>F2</td>
+      <td>kallisto</td>
+    </tr>
+    <tr>
+      <th>TTTGTTGCATGCCGGT</th>
+      <td>342</td>
+      <td>342</td>
+      <td>413.0</td>
+      <td>F2</td>
+      <td>kallisto</td>
+    </tr>
+    <tr>
+      <th>TTTGTTGGTCAAAGAT</th>
+      <td>2259</td>
+      <td>2259</td>
+      <td>5094.0</td>
+      <td>F2</td>
+      <td>kallisto</td>
+    </tr>
+    <tr>
+      <th>TTTGTTGGTGTTTACG</th>
+      <td>5749</td>
+      <td>5743</td>
+      <td>23113.0</td>
+      <td>F2</td>
+      <td>kallisto</td>
+    </tr>
+    <tr>
+      <th>TTTGTTGTCACTTTGT</th>
+      <td>1591</td>
+      <td>1588</td>
+      <td>3226.0</td>
+      <td>F2</td>
+      <td>kallisto</td>
+    </tr>
+  </tbody>
+</table>
+<p>26926 rows × 5 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">obs</span><span class="p">[</span><span class="s">"Mouse"</span><span class="p">]</span> <span class="o">+</span> <span class="s">'_'</span> <span class="o">+</span> <span class="n">obs</span><span class="p">[</span><span class="s">"Aligner"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">ecdfplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">obs</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'total_counts'</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s">'Batch'</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#ad2828'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fa3a3a'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">hue_order</span> <span class="o">=</span> <span class="p">[</span><span class="s">'F1_cellranger'</span><span class="p">,</span><span class="s">'F1_kallisto'</span><span class="p">,</span><span class="s">'F2_cellranger'</span><span class="p">,</span><span class="s">'F2_kallisto'</span><span class="p">],</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Counts per cell."</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'/Users/emmanueldollinger/Desktop/CountsPerCell.pdf'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_53_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">ecdfplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">obs</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'n_genes'</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s">'Batch'</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#ad2828'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fa3a3a'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">hue_order</span> <span class="o">=</span> <span class="p">[</span><span class="s">'F1_cellranger'</span><span class="p">,</span><span class="s">'F1_kallisto'</span><span class="p">,</span><span class="s">'F2_cellranger'</span><span class="p">,</span><span class="s">'F2_kallisto'</span><span class="p">],</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Genes per cell."</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'/Users/emmanueldollinger/Desktop/GenesPerCell.pdf'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_54_0.png" alt="png" /></p>
+
+<h1 id="040121">040121</h1>
+
+<p>Now, let’s ask the question if we look at the union of the genes, how do the clusters change? No batch correction.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">F1_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Mouse"</span><span class="p">].</span><span class="n">values</span> <span class="o">+</span> <span class="s">'_'</span> <span class="o">+</span> <span class="n">F1_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Aligner"</span><span class="p">].</span><span class="n">values</span>
+
+<span class="n">F1_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">F1_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Mouse"</span><span class="p">].</span><span class="n">values</span> <span class="o">+</span> <span class="s">'_'</span> <span class="o">+</span> <span class="n">F1_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Aligner"</span><span class="p">].</span><span class="n">values</span>
+
+<span class="n">F2_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">F2_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Mouse"</span><span class="p">].</span><span class="n">values</span> <span class="o">+</span> <span class="s">'_'</span> <span class="o">+</span> <span class="n">F2_cellranger</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Aligner"</span><span class="p">].</span><span class="n">values</span>
+
+<span class="n">F2_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">F2_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Mouse"</span><span class="p">].</span><span class="n">values</span> <span class="o">+</span> <span class="s">'_'</span> <span class="o">+</span> <span class="n">F2_kallisto</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Aligner"</span><span class="p">].</span><span class="n">values</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">del</span> <span class="n">AllCells</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span> <span class="o">=</span> <span class="n">F1_cellranger</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">F1_kallisto</span><span class="p">,</span> <span class="n">F2_cellranger</span><span class="p">,</span> <span class="n">F2_kallisto</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 26926 × 19093
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts', 'Mouse', 'Aligner', 'Batch', 'batch'
+    var: 'gene_ids-0', 'feature_types-0', 'genome-0', 'n_cells-0', 'n_cells_by_counts-0', 'mean_counts-0', 'pct_dropout_by_counts-0', 'total_counts-0', 'n_cells-1', 'n_cells_by_counts-1', 'mean_counts-1', 'pct_dropout_by_counts-1', 'total_counts-1', 'gene_ids-2', 'feature_types-2', 'genome-2', 'n_cells-2', 'n_cells_by_counts-2', 'mean_counts-2', 'pct_dropout_by_counts-2', 'total_counts-2', 'n_cells-3', 'n_cells_by_counts-3', 'mean_counts-3', 'pct_dropout_by_counts-3', 'total_counts-3'
+</code></pre></div></div>
+
+<p>As opposed to the scanpy docs, I store the counts in raw (not the log1p transformed counts).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span><span class="p">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">AllCells</span>
+</code></pre></div></div>
+
+<p>Filter mt cells.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span><span class="p">.</span><span class="n">var</span><span class="p">[</span><span class="s">'mt'</span><span class="p">]</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">.</span><span class="n">var_names</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'MT-'</span><span class="p">)</span>  <span class="c1"># annotate the group of mitochondrial genes as 'mt'
+</span><span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">calculate_qc_metrics</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">qc_vars</span><span class="o">=</span><span class="p">[</span><span class="s">'mt'</span><span class="p">],</span> <span class="n">percent_top</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">log1p</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">.</span><span class="n">pct_counts_mt</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
+</code></pre></div></div>
+
+<p>Typical preprocessing.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>View of AnnData object with n_obs × n_vars = 26926 × 19093
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts', 'Mouse', 'Aligner', 'Batch', 'batch', 'total_counts_mt', 'pct_counts_mt'
+    var: 'gene_ids-0', 'feature_types-0', 'genome-0', 'n_cells-0', 'n_cells_by_counts-0', 'mean_counts-0', 'pct_dropout_by_counts-0', 'total_counts-0', 'n_cells-1', 'n_cells_by_counts-1', 'mean_counts-1', 'pct_dropout_by_counts-1', 'total_counts-1', 'gene_ids-2', 'feature_types-2', 'genome-2', 'n_cells-2', 'n_cells_by_counts-2', 'mean_counts-2', 'pct_dropout_by_counts-2', 'total_counts-2', 'n_cells-3', 'n_cells_by_counts-3', 'mean_counts-3', 'pct_dropout_by_counts-3', 'total_counts-3', 'mt', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">normalize_total</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">target_sum</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">AllCells</span><span class="p">)</span>
+
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">highly_variable_genes</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">min_mean</span><span class="o">=</span><span class="mf">0.0125</span><span class="p">,</span> <span class="n">max_mean</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_disp</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/emmanueldollinger/miniconda3/lib/python3.7/site-packages/scanpy/preprocessing/_normalization.py:138: UserWarning: Revieved a view of an AnnData. Making a copy.
+  view_to_actual(adata)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">pca</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s">'arpack'</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_pcs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s">'cosine'</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'UMAPbyBatch.pdf'</span><span class="p">)</span> <span class="c1">#ad2828
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapUMAPbyBatch.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_70_1.png" alt="png" /></p>
+
+<p>This is probably due to # of transcripts, AnnData concat does the intersection of genes.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">?</span><span class="n">ad</span><span class="p">.</span><span class="n">AnnData</span><span class="p">.</span><span class="n">concatenate</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[0;31mSignature:[0m
+[0mad[0m[0;34m.[0m[0mAnnData[0m[0;34m.[0m[0mconcatenate[0m[0;34m([0m[0;34m[0m
+[0;34m[0m    [0mself[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0;34m*[0m[0madatas[0m[0;34m:[0m [0;34m'AnnData'[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mjoin[0m[0;34m:[0m [0mstr[0m [0;34m=[0m [0;34m'inner'[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mbatch_key[0m[0;34m:[0m [0mstr[0m [0;34m=[0m [0;34m'batch'[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mbatch_categories[0m[0;34m:[0m [0mSequence[0m[0;34m[[0m[0mAny[0m[0;34m][0m [0;34m=[0m [0;32mNone[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0muns_merge[0m[0;34m:[0m [0mUnion[0m[0;34m[[0m[0mstr[0m[0;34m,[0m [0mNoneType[0m[0;34m][0m [0;34m=[0m [0;32mNone[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mindex_unique[0m[0;34m:[0m [0mUnion[0m[0;34m[[0m[0mstr[0m[0;34m,[0m [0mNoneType[0m[0;34m][0m [0;34m=[0m [0;34m'-'[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m    [0mfill_value[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
+[0;34m[0m[0;34m)[0m [0;34m-&gt;[0m [0;34m'AnnData'[0m[0;34m[0m[0;34m[0m[0m
+[0;31mDocstring:[0m
+Concatenate along the observations axis.
+
+The :attr:`uns`, :attr:`varm` and :attr:`obsm` attributes are ignored.
+
+Currently, this works only in `'memory'` mode.
+
+Parameters
+----------
+adatas
+    AnnData matrices to concatenate with. Each matrix is referred to as
+    a “batch”.
+join
+    Use intersection (`'inner'`) or union (`'outer'`) of variables.
+batch_key
+    Add the batch annotation to :attr:`obs` using this key.
+batch_categories
+    Use these as categories for the batch annotation. By default, use increasing numbers.
+uns_merge
+    Strategy to use for merging entries of uns. These strategies are applied recusivley.
+    Currently implemented strategies include:
+
+    * `None`: The default. The concatenated object will just have an empty dict for `uns`.
+    * `"same"`: Only entries which have the same value in all AnnData objects are kept.
+    * `"unique"`: Only entries which have one unique value in all AnnData objects are kept.
+    * `"first"`: The first non-missing value is used.
+    * `"only"`: A value is included if only one of the AnnData objects has a value at this
+      path.
+index_unique
+    Make the index unique by joining the existing index names with the
+    batch category, using `index_unique='-'`, for instance. Provide
+    `None` to keep existing indices.
+fill_value
+    Scalar value to fill newly missing values in arrays with. Note: only applies to arrays
+    and sparse matrices (not dataframes) and will only be used if `join="outer"`.
+
+    .. note::
+        If not provided, the default value is `0` for sparse matrices and `np.nan`
+        for numpy arrays. See the examples below for more information.
+
+Returns
+-------
+:class:`~anndata.AnnData`
+    The concatenated :class:`~anndata.AnnData`, where `adata.obs[batch_key]`
+    stores a categorical variable labeling the batch.
+
+Notes
+-----
+
+.. warning::
+
+   If you use `join='outer'` this fills 0s for sparse data when
+   variables are absent in a batch. Use this with care. Dense data is
+   filled with `NaN`. See the examples.
+
+Examples
+--------
+Joining on intersection of variables.
+
+&gt;&gt;&gt; adata1 = AnnData(
+...     np.array([[1, 2, 3], [4, 5, 6]]),
+...     dict(obs_names=['s1', 's2'], anno1=['c1', 'c2']),
+...     dict(var_names=['a', 'b', 'c'], annoA=[0, 1, 2]),
+... )
+&gt;&gt;&gt; adata2 = AnnData(
+...     np.array([[1, 2, 3], [4, 5, 6]]),
+...     dict(obs_names=['s3', 's4'], anno1=['c3', 'c4']),
+...     dict(var_names=['d', 'c', 'b'], annoA=[0, 1, 2]),
+... )
+&gt;&gt;&gt; adata3 = AnnData(
+... np.array([[1, 2, 3], [4, 5, 6]]),
+...     dict(obs_names=['s1', 's2'], anno2=['d3', 'd4']),
+...     dict(var_names=['d', 'c', 'b'], annoA=[0, 2, 3], annoB=[0, 1, 2]),
+... )
+&gt;&gt;&gt; adata = adata1.concatenate(adata2, adata3)
+&gt;&gt;&gt; adata
+AnnData object with n_obs × n_vars = 6 × 2
+    obs: 'anno1', 'anno2', 'batch'
+    var: 'annoA-0', 'annoA-1', 'annoA-2', 'annoB-2'
+&gt;&gt;&gt; adata.X
+array([[2., 3.],
+       [5., 6.],
+       [3., 2.],
+       [6., 5.],
+       [3., 2.],
+       [6., 5.]], dtype=float32)
+&gt;&gt;&gt; adata.obs
+     anno1 anno2 batch
+s1-0    c1   NaN     0
+s2-0    c2   NaN     0
+s3-1    c3   NaN     1
+s4-1    c4   NaN     1
+s1-2   NaN    d3     2
+s2-2   NaN    d4     2
+&gt;&gt;&gt; adata.var.T
+         b  c
+annoA-0  1  2
+annoA-1  2  1
+annoA-2  3  2
+annoB-2  2  1
+
+Joining on the union of variables.
+
+&gt;&gt;&gt; outer = adata1.concatenate(adata2, adata3, join='outer')
+&gt;&gt;&gt; outer
+AnnData object with n_obs × n_vars = 6 × 4
+    obs: 'anno1', 'anno2', 'batch'
+    var: 'annoA-0', 'annoA-1', 'annoA-2', 'annoB-2'
+&gt;&gt;&gt; outer.var.T
+           a    b    c    d
+annoA-0  0.0  1.0  2.0  NaN
+annoA-1  NaN  2.0  1.0  0.0
+annoA-2  NaN  3.0  2.0  0.0
+annoB-2  NaN  2.0  1.0  0.0
+&gt;&gt;&gt; outer.var_names
+Index(['a', 'b', 'c', 'd'], dtype='object')
+&gt;&gt;&gt; outer.X
+array([[ 1.,  2.,  3., nan],
+       [ 4.,  5.,  6., nan],
+       [nan,  3.,  2.,  1.],
+       [nan,  6.,  5.,  4.],
+       [nan,  3.,  2.,  1.],
+       [nan,  6.,  5.,  4.]], dtype=float32)
+&gt;&gt;&gt; outer.X.sum(axis=0)
+array([nan, 25., 23., nan], dtype=float32)
+&gt;&gt;&gt; import pandas as pd
+&gt;&gt;&gt; Xdf = pd.DataFrame(outer.X, columns=outer.var_names)
+&gt;&gt;&gt; Xdf
+     a    b    c    d
+0  1.0  2.0  3.0  NaN
+1  4.0  5.0  6.0  NaN
+2  NaN  3.0  2.0  1.0
+3  NaN  6.0  5.0  4.0
+4  NaN  3.0  2.0  1.0
+5  NaN  6.0  5.0  4.0
+&gt;&gt;&gt; Xdf.sum()
+a     5.0
+b    25.0
+c    23.0
+d    10.0
+dtype: float32
+
+One way to deal with missing values is to use masked arrays:
+
+&gt;&gt;&gt; from numpy import ma
+&gt;&gt;&gt; outer.X = ma.masked_invalid(outer.X)
+&gt;&gt;&gt; outer.X
+masked_array(
+  data=[[1.0, 2.0, 3.0, --],
+        [4.0, 5.0, 6.0, --],
+        [--, 3.0, 2.0, 1.0],
+        [--, 6.0, 5.0, 4.0],
+        [--, 3.0, 2.0, 1.0],
+        [--, 6.0, 5.0, 4.0]],
+  mask=[[False, False, False,  True],
+        [False, False, False,  True],
+        [ True, False, False, False],
+        [ True, False, False, False],
+        [ True, False, False, False],
+        [ True, False, False, False]],
+  fill_value=1e+20,
+  dtype=float32)
+&gt;&gt;&gt; outer.X.sum(axis=0).data
+array([ 5., 25., 23., 10.], dtype=float32)
+
+The masked array is not saved but has to be reinstantiated after saving.
+
+&gt;&gt;&gt; outer.write('./test.h5ad')
+&gt;&gt;&gt; from anndata import read_h5ad
+&gt;&gt;&gt; outer = read_h5ad('./test.h5ad')
+&gt;&gt;&gt; outer.X
+array([[ 1.,  2.,  3., nan],
+       [ 4.,  5.,  6., nan],
+       [nan,  3.,  2.,  1.],
+       [nan,  6.,  5.,  4.],
+       [nan,  3.,  2.,  1.],
+       [nan,  6.,  5.,  4.]], dtype=float32)
+
+For sparse data, everything behaves similarly,
+except that for `join='outer'`, zeros are added.
+
+&gt;&gt;&gt; from scipy.sparse import csr_matrix
+&gt;&gt;&gt; adata1 = AnnData(
+...     csr_matrix([[0, 2, 3], [0, 5, 6]]),
+...     dict(obs_names=['s1', 's2'], anno1=['c1', 'c2']),
+...     dict(var_names=['a', 'b', 'c']),
+... )
+&gt;&gt;&gt; adata2 = AnnData(
+... csr_matrix([[0, 2, 3], [0, 5, 6]]),
+...     dict(obs_names=['s3', 's4'], anno1=['c3', 'c4']),
+...     dict(var_names=['d', 'c', 'b']),
+... )
+&gt;&gt;&gt; adata3 = AnnData(
+... csr_matrix([[1, 2, 0], [0, 5, 6]]),
+...     dict(obs_names=['s5', 's6'], anno2=['d3', 'd4']),
+...     dict(var_names=['d', 'c', 'b']),
+... )
+&gt;&gt;&gt; adata = adata1.concatenate(adata2, adata3, join='outer')
+&gt;&gt;&gt; adata.var_names
+Index(['a', 'b', 'c', 'd'], dtype='object')
+&gt;&gt;&gt; adata.X.toarray()
+array([[0., 2., 3., 0.],
+       [0., 5., 6., 0.],
+       [0., 3., 2., 0.],
+       [0., 6., 5., 0.],
+       [0., 0., 2., 1.],
+       [0., 6., 5., 0.]], dtype=float32)
+[0;31mFile:[0m      ~/miniconda3/lib/python3.7/site-packages/anndata/_core/anndata.py
+[0;31mType:[0m      function
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">pca</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'PCAbyBatch.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/pcaPCAbyBatch.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_73_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">pca</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'PCAbyBatch34.pdf'</span><span class="p">,</span> <span class="n">components</span> <span class="o">=</span> <span class="p">[</span><span class="s">'3,4'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/pcaPCAbyBatch34.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_74_1.png" alt="png" /></p>
+
+<p>Cell annotation:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'total_counts_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'total_counts'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'n_genes_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'n_genes'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Ptprc'</span><span class="p">,</span> <span class="s">'Krt14'</span><span class="p">,</span> <span class="s">'Krt5'</span><span class="p">,</span> <span class="s">'Krt17'</span><span class="p">,</span> <span class="s">'Enpp2'</span><span class="p">,</span> <span class="s">'total_counts_log'</span><span class="p">,</span> <span class="s">'n_genes_log'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_78_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'total_counts_log'</span><span class="p">,</span> <span class="s">'Batch'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="s">'TotalCountsAndNGenes.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapTotalCountsAndNGenes.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_79_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'n_genes_log'</span><span class="p">,</span> <span class="s">'Batch'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="s">'NGenes.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapNGenes.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_80_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F1_cellranger</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"F1_cellranger"</span><span class="p">,:]</span>
+<span class="n">F2_cellranger</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"F2_cellranger"</span><span class="p">,:]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">F1_cellranger</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'total_counts_log'</span><span class="p">,</span> <span class="s">'n_genes_log'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">F2_cellranger</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'total_counts_log'</span><span class="p">,</span> <span class="s">'n_genes_log'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_82_0.png" alt="png" /></p>
+
+<p><img src="/assets/images/taleoftwoaligners/output_82_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells_totalcountsSubset</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"total_counts_log"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">,:]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells_totalcountsSubset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'total_counts_log'</span><span class="p">,</span> <span class="s">'n_genes_log'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_84_0.png" alt="png" /></p>
+
+<p>Subset just ICs:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ICs</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">[:,</span><span class="s">"Ptprc"</span><span class="p">].</span><span class="n">X</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,:]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ICs_raw</span> <span class="o">=</span> <span class="n">ICs</span><span class="p">.</span><span class="n">raw</span><span class="p">.</span><span class="n">to_adata</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">normalize_total</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">target_sum</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">)</span>
+
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">highly_variable_genes</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">min_mean</span><span class="o">=</span><span class="mf">0.0125</span><span class="p">,</span> <span class="n">max_mean</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_disp</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: adata.X seems to be already log-transformed.
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">pca</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s">'arpack'</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_pcs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s">'cosine'</span><span class="p">)</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'UMAPbyBatch_ICs.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapUMAPbyBatch_ICs.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_90_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">ICs_raw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">,</span> <span class="s">'Cd3e'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'UMAPbyBatch_ICs.pdf'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapUMAPbyBatch_ICs.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_91_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Krts</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">[:,</span><span class="s">"Krt14"</span><span class="p">].</span><span class="n">X</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">ICs</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">[:,</span><span class="s">"Ptprc"</span><span class="p">].</span><span class="n">X</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">FBs</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">[</span><span class="n">AllCells</span><span class="p">[:,</span><span class="s">"Enpp2"</span><span class="p">].</span><span class="n">X</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Krt14</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">Krts</span><span class="p">[:,</span><span class="s">"Krt14"</span><span class="p">].</span><span class="n">X</span><span class="p">).</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">Ptprc</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">ICs</span><span class="p">[:,</span><span class="s">"Ptprc"</span><span class="p">].</span><span class="n">X</span><span class="p">).</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">Enpp2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">FBs</span><span class="p">[:,</span><span class="s">"Enpp2"</span><span class="p">].</span><span class="n">X</span><span class="p">).</span><span class="n">flatten</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Krtsdf</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">Krtsdf</span><span class="p">[</span><span class="s">"Krt14"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Krt14</span>
+<span class="n">Krtsdf</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Krts</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">].</span><span class="n">values</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ICsdf</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">ICsdf</span><span class="p">[</span><span class="s">"Ptprc"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ptprc</span>
+<span class="n">ICsdf</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ICs</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">].</span><span class="n">values</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FBsdf</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">FBsdf</span><span class="p">[</span><span class="s">"Enpp2"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Enpp2</span>
+<span class="n">FBsdf</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">]</span> <span class="o">=</span> <span class="n">FBs</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">"Batch"</span><span class="p">].</span><span class="n">values</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">vlnKrts</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">Krtsdf</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'Batch'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'Krt14'</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">])</span>
+<span class="n">vlnKrts</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Krtsdf</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">]),</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span> <span class="s">'right'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">vlnICs</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">ICsdf</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'Batch'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'Ptprc'</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">])</span>
+<span class="n">vlnICs</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ICsdf</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">]),</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span> <span class="s">'right'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">vlnFBs</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">FBsdf</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'Batch'</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'Enpp2'</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">])</span>
+<span class="n">vlnFBs</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">unique</span><span class="p">(</span><span class="n">FBsdf</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">]),</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span> <span class="s">'right'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'/Users/emmanueldollinger/Desktop/DiffGenes.pdf'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_97_0.png" alt="png" /></p>
+
+<p>Let’s see if I can batch correct out the aligners. Using harmony:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">scanpy.external</span> <span class="k">as</span> <span class="n">sce</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 26926 × 19093
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts', 'Mouse', 'Aligner', 'Batch', 'batch', 'total_counts_mt', 'pct_counts_mt', 'total_counts_log', 'n_genes_log'
+    var: 'gene_ids-0', 'feature_types-0', 'genome-0', 'n_cells-0', 'n_cells_by_counts-0', 'mean_counts-0', 'pct_dropout_by_counts-0', 'total_counts-0', 'n_cells-1', 'n_cells_by_counts-1', 'mean_counts-1', 'pct_dropout_by_counts-1', 'total_counts-1', 'gene_ids-2', 'feature_types-2', 'genome-2', 'n_cells-2', 'n_cells_by_counts-2', 'mean_counts-2', 'pct_dropout_by_counts-2', 'total_counts-2', 'n_cells-3', 'n_cells_by_counts-3', 'mean_counts-3', 'pct_dropout_by_counts-3', 'total_counts-3', 'mt', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts', 'highly_variable', 'means', 'dispersions', 'dispersions_norm', 'mean', 'std'
+    uns: 'log1p', 'hvg', 'pca', 'neighbors', 'umap', 'Batch_colors'
+    obsm: 'X_pca', 'X_umap'
+    varm: 'PCs'
+    obsp: 'distances', 'connectivities'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sce</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">harmony_integrate</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">'Batch'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2021-04-04 14:42:52,989 - harmonypy - INFO - Iteration 1 of 10
+2021-04-04 14:42:59,047 - harmonypy - INFO - Iteration 2 of 10
+2021-04-04 14:43:05,159 - harmonypy - INFO - Iteration 3 of 10
+2021-04-04 14:43:11,282 - harmonypy - INFO - Iteration 4 of 10
+2021-04-04 14:43:13,433 - harmonypy - INFO - Iteration 5 of 10
+2021-04-04 14:43:17,269 - harmonypy - INFO - Iteration 6 of 10
+2021-04-04 14:43:19,164 - harmonypy - INFO - Iteration 7 of 10
+2021-04-04 14:43:21,061 - harmonypy - INFO - Converged after 7 iterations
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 26926 × 19093
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts', 'Mouse', 'Aligner', 'Batch', 'batch', 'total_counts_mt', 'pct_counts_mt', 'total_counts_log', 'n_genes_log'
+    var: 'gene_ids-0', 'feature_types-0', 'genome-0', 'n_cells-0', 'n_cells_by_counts-0', 'mean_counts-0', 'pct_dropout_by_counts-0', 'total_counts-0', 'n_cells-1', 'n_cells_by_counts-1', 'mean_counts-1', 'pct_dropout_by_counts-1', 'total_counts-1', 'gene_ids-2', 'feature_types-2', 'genome-2', 'n_cells-2', 'n_cells_by_counts-2', 'mean_counts-2', 'pct_dropout_by_counts-2', 'total_counts-2', 'n_cells-3', 'n_cells_by_counts-3', 'mean_counts-3', 'pct_dropout_by_counts-3', 'total_counts-3', 'mt', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts', 'highly_variable', 'means', 'dispersions', 'dispersions_norm', 'mean', 'std'
+    uns: 'log1p', 'hvg', 'pca', 'neighbors', 'umap', 'Batch_colors'
+    obsm: 'X_pca', 'X_umap', 'X_pca_harmony'
+    varm: 'PCs'
+    obsp: 'distances', 'connectivities'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">pp</span><span class="p">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_pcs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s">'cosine'</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="s">'X_pca_harmony'</span><span class="p">,</span> <span class="n">key_added</span><span class="o">=</span><span class="s">'neighbors_Harmony'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span><span class="p">.</span><span class="n">obsm</span><span class="p">[</span><span class="s">'X_umap_Original'</span><span class="p">]</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">.</span><span class="n">obsm</span><span class="p">[</span><span class="s">'X_umap'</span><span class="p">].</span><span class="n">copy</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AllCells</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AnnData object with n_obs × n_vars = 26926 × 19093
+    obs: 'n_genes', 'n_genes_by_counts', 'total_counts', 'Mouse', 'Aligner', 'Batch', 'batch', 'total_counts_mt', 'pct_counts_mt', 'total_counts_log', 'n_genes_log'
+    var: 'gene_ids-0', 'feature_types-0', 'genome-0', 'n_cells-0', 'n_cells_by_counts-0', 'mean_counts-0', 'pct_dropout_by_counts-0', 'total_counts-0', 'n_cells-1', 'n_cells_by_counts-1', 'mean_counts-1', 'pct_dropout_by_counts-1', 'total_counts-1', 'gene_ids-2', 'feature_types-2', 'genome-2', 'n_cells-2', 'n_cells_by_counts-2', 'mean_counts-2', 'pct_dropout_by_counts-2', 'total_counts-2', 'n_cells-3', 'n_cells_by_counts-3', 'mean_counts-3', 'pct_dropout_by_counts-3', 'total_counts-3', 'mt', 'n_cells_by_counts', 'mean_counts', 'pct_dropout_by_counts', 'total_counts', 'highly_variable', 'means', 'dispersions', 'dispersions_norm', 'mean', 'std'
+    uns: 'log1p', 'hvg', 'pca', 'neighbors', 'umap', 'Batch_colors'
+    obsm: 'X_pca', 'X_umap', 'X_pca_harmony', 'X_umap_Original'
+    varm: 'PCs'
+    obsp: 'distances', 'connectivities'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">tl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">neighbors_key</span><span class="o">=</span><span class="s">'neighbors_Harmony'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Batch'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'UMAPbyBatch.pdf'</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">use_raw</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapUMAPbyBatch.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_107_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sc</span><span class="p">.</span><span class="n">settings</span><span class="p">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">pl</span><span class="p">.</span><span class="n">umap</span><span class="p">(</span><span class="n">AllCells</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">'Krt14'</span><span class="p">,</span><span class="s">'Ptprc'</span><span class="p">,</span><span class="s">'Enpp2'</span><span class="p">],</span> <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s">'#940505'</span><span class="p">,</span> <span class="s">'#13743c'</span><span class="p">,</span><span class="s">'#fb8d8d'</span><span class="p">,</span><span class="s">'#60c000'</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s">'UMAPgenes.pdf'</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">use_raw</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span> <span class="c1">#ad2828
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: saving figure to file figures/umapUMAPgenes.pdf
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_108_1.png" alt="png" /></p>
+
+<p>Calculate the difference between aligners in medians of each gene.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">time</span>
+
+<span class="n">Difference_k_STAR</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">AllCells</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">values</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">GeneList</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">values</span>
+
+<span class="n">MouseList</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">].</span><span class="n">values</span>
+
+<span class="n">AlignerList</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">.</span><span class="n">obs</span><span class="p">[</span><span class="s">'Aligner'</span><span class="p">].</span><span class="n">values</span>
+
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">AllCells</span><span class="p">.</span><span class="n">X</span>
+
+<span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">GeneList</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">mouse</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'F1'</span><span class="p">,</span><span class="s">'F2'</span><span class="p">]:</span>
+
+        <span class="n">MouseIndex</span> <span class="o">=</span> <span class="n">MouseList</span> <span class="o">==</span> <span class="n">mouse</span>
+
+        <span class="n">subset</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="n">MouseIndex</span><span class="p">,</span> <span class="n">GeneList</span> <span class="o">==</span> <span class="n">gene</span><span class="p">]</span>
+
+        <span class="n">temp_diff</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">median</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="n">AlignerList</span><span class="p">[</span><span class="n">MouseIndex</span><span class="p">]</span> <span class="o">==</span> <span class="s">'kallisto'</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">median</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="n">AlignerList</span><span class="p">[</span><span class="n">MouseIndex</span><span class="p">]</span> <span class="o">==</span> <span class="s">'cellranger'</span><span class="p">])</span>
+
+        <span class="n">Difference_k_STAR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_diff</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CPU times: user 34.7 s, sys: 23 ms, total: 34.7 s
+Wall time: 34.7 s
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_genes_diff</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df_genes_diff</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">tile</span><span class="p">([</span><span class="s">'F1'</span><span class="p">,</span><span class="s">'F2'</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">GeneList</span><span class="p">))</span>
+<span class="n">df_genes_diff</span><span class="p">[</span><span class="s">'Difference_k_STAR'</span><span class="p">]</span> <span class="o">=</span> <span class="n">Difference_k_STAR</span>
+<span class="n">df_genes_diff</span><span class="p">[</span><span class="s">'Genes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">GeneList</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df_genes_diff</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mouse</th>
+      <th>Difference_k_STAR</th>
+      <th>Genes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>F1</td>
+      <td>0.0</td>
+      <td>Sox17</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>F2</td>
+      <td>0.0</td>
+      <td>Sox17</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>F1</td>
+      <td>0.0</td>
+      <td>Gm6085</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>F2</td>
+      <td>0.0</td>
+      <td>Gm6085</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>F1</td>
+      <td>0.0</td>
+      <td>Mrpl15</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>38181</th>
+      <td>F2</td>
+      <td>0.0</td>
+      <td>mt-Tp</td>
+    </tr>
+    <tr>
+      <th>38182</th>
+      <td>F1</td>
+      <td>0.0</td>
+      <td>AC149090.1</td>
+    </tr>
+    <tr>
+      <th>38183</th>
+      <td>F2</td>
+      <td>0.0</td>
+      <td>AC149090.1</td>
+    </tr>
+    <tr>
+      <th>38184</th>
+      <td>F1</td>
+      <td>0.0</td>
+      <td>CAAA01147332.1</td>
+    </tr>
+    <tr>
+      <th>38185</th>
+      <td>F2</td>
+      <td>0.0</td>
+      <td>CAAA01147332.1</td>
+    </tr>
+  </tbody>
+</table>
+<p>38186 rows × 3 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsetdf</span> <span class="o">=</span> <span class="n">df_genes_diff</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">df_genes_diff</span><span class="p">[</span><span class="s">'Difference_k_STAR'</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsetdf</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mouse</th>
+      <th>Difference_k_STAR</th>
+      <th>Genes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>98</th>
+      <td>F1</td>
+      <td>-0.252593</td>
+      <td>Rpl7</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>F2</td>
+      <td>-0.434404</td>
+      <td>Rpl7</td>
+    </tr>
+    <tr>
+      <th>308</th>
+      <td>F1</td>
+      <td>-1.308775</td>
+      <td>Rpl31</td>
+    </tr>
+    <tr>
+      <th>324</th>
+      <td>F1</td>
+      <td>0.644899</td>
+      <td>Map4k4</td>
+    </tr>
+    <tr>
+      <th>386</th>
+      <td>F1</td>
+      <td>0.041473</td>
+      <td>Col3a1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>38173</th>
+      <td>F2</td>
+      <td>0.066550</td>
+      <td>mt-Nd5</td>
+    </tr>
+    <tr>
+      <th>38174</th>
+      <td>F1</td>
+      <td>1.232942</td>
+      <td>mt-Nd6</td>
+    </tr>
+    <tr>
+      <th>38175</th>
+      <td>F2</td>
+      <td>1.146825</td>
+      <td>mt-Nd6</td>
+    </tr>
+    <tr>
+      <th>38176</th>
+      <td>F1</td>
+      <td>0.047487</td>
+      <td>mt-Cytb</td>
+    </tr>
+    <tr>
+      <th>38177</th>
+      <td>F2</td>
+      <td>0.053453</td>
+      <td>mt-Cytb</td>
+    </tr>
+  </tbody>
+</table>
+<p>601 rows × 3 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span><span class="p">(</span><span class="n">subsetdf</span><span class="p">[</span><span class="n">subsetdf</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'F1'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>403
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span><span class="p">(</span><span class="n">subsetdf</span><span class="p">[</span><span class="n">subsetdf</span><span class="p">[</span><span class="s">'Mouse'</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'F1'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>198
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">subsetdf</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'Difference_k_STAR'</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'Mouse'</span><span class="p">,</span> <span class="n">fliersize</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">subsetdf</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">'Difference_k_STAR'</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s">'Mouse'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'/Users/emmanueldollinger/Desktop/DistOfGenes.pdf'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/taleoftwoaligners/output_116_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsetdf</span><span class="p">[</span><span class="s">'diffAbs'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">subsetdf</span><span class="p">[</span><span class="s">'Difference_k_STAR'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/emmanueldollinger/miniconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  """Entry point for launching an IPython kernel.
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsetdf</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'diffAbs'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/emmanueldollinger/miniconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  """Entry point for launching an IPython kernel.
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsetdf</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mouse</th>
+      <th>Difference_k_STAR</th>
+      <th>Genes</th>
+      <th>diffAbs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>37189</th>
+      <td>F2</td>
+      <td>-2.179982</td>
+      <td>Fau</td>
+      <td>2.179982</td>
+    </tr>
+    <tr>
+      <th>21934</th>
+      <td>F1</td>
+      <td>-2.166188</td>
+      <td>Rpl13</td>
+      <td>2.166188</td>
+    </tr>
+    <tr>
+      <th>15999</th>
+      <td>F2</td>
+      <td>-2.156097</td>
+      <td>Rps16</td>
+      <td>2.156097</td>
+    </tr>
+    <tr>
+      <th>21935</th>
+      <td>F2</td>
+      <td>-2.145788</td>
+      <td>Rpl13</td>
+      <td>2.145788</td>
+    </tr>
+    <tr>
+      <th>25903</th>
+      <td>F2</td>
+      <td>-2.101104</td>
+      <td>Rps27a</td>
+      <td>2.101104</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34602</th>
+      <td>F1</td>
+      <td>0.001784</td>
+      <td>Dusp1</td>
+      <td>0.001784</td>
+    </tr>
+    <tr>
+      <th>8312</th>
+      <td>F1</td>
+      <td>-0.001540</td>
+      <td>Selenof</td>
+      <td>0.001540</td>
+    </tr>
+    <tr>
+      <th>12273</th>
+      <td>F2</td>
+      <td>-0.001498</td>
+      <td>Dynll1</td>
+      <td>0.001498</td>
+    </tr>
+    <tr>
+      <th>35116</th>
+      <td>F1</td>
+      <td>0.001307</td>
+      <td>H2-D1</td>
+      <td>0.001307</td>
+    </tr>
+    <tr>
+      <th>23101</th>
+      <td>F2</td>
+      <td>-0.001021</td>
+      <td>Itm2b</td>
+      <td>0.001021</td>
+    </tr>
+  </tbody>
+</table>
+<p>601 rows × 4 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsetdf</span><span class="p">[</span><span class="s">'Genes'</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">75</span><span class="p">].</span><span class="n">values</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array(['Fau', 'Rpl13', 'Rps16', 'Rpl13', 'Rps27a', 'Rps27a', 'Rpl28',
+       'Rpl9', 'Rpl9', 'Rps12', 'Rpl11', 'Rps23', 'Rpl11', 'Rpl3', 'Rpl3',
+       'Rpl17', 'Rps23', 'Rps12', 'Rpl10', 'Rps13', 'Rpl17', 'Rpl7a',
+       'Rps13', 'Rpl10a', 'Rps7', 'Rpl12', 'Rpl12', 'Gnas', 'Rpl10',
+       'Rpl21', 'Rpl7a', 'Rpl10a', 'Rps7', 'Rpl21', 'Rpl5', 'Rpl36a',
+       'Rpl34', 'Rpl5', 'Rps17', 'Rpl36a', 'Rps16', 'Rpl28', 'Hspa8',
+       'Rpl23a', 'Gnas', 'Rpl34', 'Ap1s3', 'Ppib', 'AC160336.1', 'Rps6'],
+      dtype=object)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">subsetdf</span><span class="p">[</span><span class="s">'Difference_k_STAR'</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">75</span><span class="p">].</span><span class="n">values</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>64
+</code></pre></div></div>
+
+
+    </div>
+
+</article>
+<div class="post-nav"><a class="previous" href="/signaling/2021/02/23/cellchat.html" title="CellChat">CellChat</a><a class="next" href="/hpc/2021/04/07/CondaEnvOnHPC3.html" title="Python on HPC3">Python on HPC3</a></div><div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/pseudotime/2021/02/09/scvelo-tutorial.html" title="Python on HPC3">scVelo</a></li><li><a class="post-link" href="/network/2022/02/10/gene-distributions.html" title="Python on HPC3">Gene Distributions</a></li><li><a class="post-link" href="/preprocessing/2021/04/05/Tale-of-Two-Aligners.html" title="Python on HPC3">A Tale of Two Aligners</a></li><li><a class="post-link" href="/hpc/2021/04/07/CondaEnvOnHPC3.html" title="Python on HPC3">Python on HPC3</a></li></ul>
+    </div><div class="post-comments">  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '/preprocessing/2021/04/05/Tale-of-Two-Aligners.html';
+      this.page.identifier = '/preprocessing/2021/04/05/Tale-of-Two-Aligners.html';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://https-uci-genpals-github-io.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div>Copyright © 2020-2021 @UCI genPALS</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/feed.xml">via RSS</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
