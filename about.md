@@ -40,7 +40,7 @@ For other questions and inquiries, please reach out to the GenPALS leaders.
 * **Negin Rahimzadeh** nrahimza at uci.edu
 * **Katrina Lee Bartas** kbartas at uci.edu
 * **Nellie Kwang** nkwang at hs.uci.edu
-* **Ze Shi** zechuas@uci.edu
+* **Ze Shi** zechuas at uci.edu
 
 Founding Members
 * Emmanuel Dollinge
