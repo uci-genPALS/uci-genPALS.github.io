@@ -37,6 +37,12 @@ genPALS is supported by the [NSF-Simons Center for Multiscale Cell Fate Research
 Please join the GenPALS [Slack workspace](https://genpals.slack.com/) to interact with our community.
 For other questions and inquiries, please reach out to the GenPALS leaders.
 
-* **Emmanuel Dollinge** (edolling {at} uci.edu)
-* **Fairlie Reese** (freese {at} uci.edu)
-* **Sam Morabito** (smorabit {at} uci.edu)
+* **Negin Rahimzadeh** (nrahimza@uci.edu)
+* **Katrina Lee Bartas** (kbartas@uci.edu)
+* **Nellie Kwang** (nkwang@hs.uci.edu)
+* **Ze Shi** (zechuas@uci.edu)
+
+Founding Members
+* Emmanuel Dollinge
+* Fairlie Reese 
+* Sam Morabito 
