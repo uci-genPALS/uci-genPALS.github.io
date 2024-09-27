@@ -39,7 +39,7 @@ For other questions and inquiries, please reach out to the GenPALS leaders.
 
 * **Negin Rahimzadeh** nrahimza at uci.edu
 * **Nellie Kwang** nkwang at hs.uci.edu
-* **Luis Solano** nrahimza at uci.edu
+* **Luis Solano** lesolano at uci.edu
 
 Founding Members
 * Emmanuel Dollinge
