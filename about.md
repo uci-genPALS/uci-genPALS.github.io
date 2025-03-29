@@ -42,6 +42,6 @@ For other questions and inquiries, please reach out to the GenPALS leaders.
 * **Luis Solano** lesolano at uci.edu
 
 Founding Members
-* Emmanuel Dollinge
+* Emmanuel Dollinger
 * Fairlie Reese 
 * Sam Morabito 
