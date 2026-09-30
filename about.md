@@ -37,9 +37,11 @@ genPALS is supported by the [NSF-Simons Center for Multiscale Cell Fate Research
 Please join the GenPALS [Slack workspace](https://genpals.slack.com/) to interact with our community.
 For other questions and inquiries, please reach out to the GenPALS leaders.
 
-* **Negin Rahimzadeh** nrahimza at uci.edu
-* **Nellie Kwang** nkwang at hs.uci.edu
+* **Dayeon Cheong** dcheong2 at uci.edu
+* **Diana Hernandez Hernandez** dianah21 at uci.edu
 * **Luis Solano** lesolano at uci.edu
+* **Nellie Kwang** nkwang at hs.uci.edu
+* **Negin Rahimzadeh** nrahimza at uci.edu
 
 Founding Members
 * Emmanuel Dollinger
